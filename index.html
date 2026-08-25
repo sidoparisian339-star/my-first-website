@@ -14,150 +14,325 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: #111;
-            color: white;
             min-height: 100vh;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(circle at 50% 40%, #202020 0%, #0a0a0a 45%, #000 100%);
+            color: white;
         }
 
-        /* الصفحة الرئيسية */
+        /* خلفية متحركة */
+        .background {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(150, 80, 255, 0.08);
+            filter: blur(80px);
+            animation: moveGlow 8s infinite alternate ease-in-out;
+        }
+
+        .glow:nth-child(1) {
+            top: 10%;
+            right: 10%;
+        }
+
+        .glow:nth-child(2) {
+            bottom: 5%;
+            left: 5%;
+            animation-delay: 2s;
+        }
+
+        @keyframes moveGlow {
+            from {
+                transform: translate(0, 0) scale(1);
+            }
+
+            to {
+                transform: translate(80px, -50px) scale(1.3);
+            }
+        }
+
+        /* شاشة الدخول */
+        .age-screen {
+            position: fixed;
+            inset: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 20px;
+
+            background: rgba(0, 0, 0, 0.72);
+            backdrop-filter: blur(12px);
+
+            z-index: 1000;
+        }
+
+        .age-box {
+            width: 100%;
+            max-width: 430px;
+
+            padding: 42px 28px;
+
+            text-align: center;
+
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+
+            background: rgba(20, 20, 20, 0.82);
+
+            box-shadow:
+                0 0 25px rgba(160, 80, 255, 0.18),
+                0 0 80px rgba(160, 80, 255, 0.08);
+
+            animation: appear 0.8s ease;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* الأيقونة */
+        .age-icon {
+            font-size: 58px;
+            margin-bottom: 18px;
+
+            filter:
+                drop-shadow(0 0 8px rgba(255,255,255,0.5))
+                drop-shadow(0 0 22px rgba(160,80,255,0.7));
+
+            animation: iconPulse 2.5s infinite ease-in-out;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.08);
+            }
+        }
+
+        /* العنوان */
+        .age-title {
+            font-size: 30px;
+            margin-bottom: 14px;
+
+            text-shadow:
+                0 0 8px rgba(255,255,255,0.6),
+                0 0 25px rgba(160,80,255,0.8);
+        }
+
+        .age-description {
+            color: #cfcfcf;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        /* الأزرار */
+        .buttons {
+            display: flex;
+            gap: 14px;
+        }
+
+        .age-button {
+            flex: 1;
+
+            padding: 16px 10px;
+
+            border-radius: 14px;
+            border: 1px solid transparent;
+
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.3s ease,
+                background 0.3s ease;
+        }
+
+        .age-button:hover {
+            transform: translateY(-3px);
+        }
+
+        .yes-button {
+            background: rgba(20, 170, 90, 0.18);
+            border-color: rgba(30, 220, 120, 0.7);
+
+            box-shadow:
+                0 0 10px rgba(30, 220, 120, 0.35),
+                inset 0 0 15px rgba(30, 220, 120, 0.08);
+        }
+
+        .yes-button:hover {
+            background: rgba(20, 190, 100, 0.3);
+
+            box-shadow:
+                0 0 18px rgba(30, 220, 120, 0.7),
+                0 0 35px rgba(30, 220, 120, 0.25);
+        }
+
+        .no-button {
+            background: rgba(210, 40, 55, 0.18);
+            border-color: rgba(255, 70, 80, 0.7);
+
+            box-shadow:
+                0 0 10px rgba(255, 60, 70, 0.35),
+                inset 0 0 15px rgba(255, 60, 70, 0.08);
+        }
+
+        .no-button:hover {
+            background: rgba(220, 40, 55, 0.3);
+
+            box-shadow:
+                0 0 18px rgba(255, 60, 70, 0.7),
+                0 0 35px rgba(255, 60, 70, 0.25);
+        }
+
+        .age-button:active {
+            transform: scale(0.96);
+        }
+
+        /* الموقع بعد الدخول */
         .website {
             min-height: 100vh;
-            padding: 30px 20px;
+            padding: 25px;
         }
 
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            background: #1b1b1b;
-            border-radius: 12px;
+            padding: 18px 22px;
+
+            border-radius: 16px;
+
+            background: rgba(25,25,25,0.8);
+            border: 1px solid rgba(255,255,255,0.1);
+
+            box-shadow: 0 0 20px rgba(160,80,255,0.08);
         }
 
         .logo {
             font-size: 24px;
             font-weight: bold;
+
+            text-shadow:
+                0 0 8px rgba(255,255,255,0.5),
+                0 0 20px rgba(160,80,255,0.7);
         }
 
-        .content {
+        .main-content {
             text-align: center;
-            margin-top: 100px;
+            margin-top: 120px;
         }
 
-        .content h1 {
-            font-size: 35px;
+        .main-content h1 {
+            font-size: 38px;
             margin-bottom: 15px;
+
+            text-shadow:
+                0 0 10px rgba(255,255,255,0.6),
+                0 0 30px rgba(160,80,255,0.8);
         }
 
-        .content p {
-            color: #bbb;
+        .main-content p {
+            color: #aaa;
             font-size: 18px;
         }
 
-        /* نافذة العمر */
-        .age-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.92);
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            z-index: 9999;
-        }
-
-        .age-box {
-            width: 90%;
-            max-width: 420px;
-
-            background: #1d1d1d;
-            padding: 35px 25px;
-
-            border-radius: 18px;
-            text-align: center;
-
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-        }
-
-        .age-box h2 {
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
-
-        .age-box p {
-            color: #ccc;
-            margin-bottom: 25px;
-            line-height: 1.7;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 12px;
-        }
-
-        button {
-            flex: 1;
-            border: none;
-            padding: 14px;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .yes {
-            background: #18a957;
-            color: white;
-        }
-
-        .no {
-            background: #d93636;
-            color: white;
-        }
-
-        button:active {
-            transform: scale(0.97);
-        }
-
-        /* رسالة الرفض */
+        /* شاشة الرفض */
         .blocked {
-            display: none;
             position: fixed;
             inset: 0;
-            background: #111;
+
+            display: none;
 
             justify-content: center;
             align-items: center;
 
             text-align: center;
+
             padding: 30px;
 
-            z-index: 10000;
+            background: #050505;
+
+            z-index: 2000;
         }
 
         .blocked h2 {
-            font-size: 28px;
+            font-size: 30px;
             margin-bottom: 15px;
         }
 
         .blocked p {
-            color: #bbb;
-            line-height: 1.7;
+            color: #aaa;
+            line-height: 1.8;
+        }
+
+        /* الهاتف */
+        @media (max-width: 480px) {
+
+            .age-box {
+                padding: 35px 20px;
+            }
+
+            .age-title {
+                font-size: 26px;
+            }
+
+            .age-icon {
+                font-size: 52px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .age-button {
+                width: 100%;
+            }
         }
     </style>
 </head>
 
 <body>
 
+    <!-- الخلفية -->
+    <div class="background">
+        <div class="glow"></div>
+        <div class="glow"></div>
+    </div>
+
+
+    <!-- الموقع -->
     <div class="website">
 
         <header>
             <div class="logo">موقعنا</div>
         </header>
 
-        <div class="content">
+        <div class="main-content">
             <h1>مرحبًا بك</h1>
             <p>أهلًا وسهلًا بك في موقعنا.</p>
         </div>
@@ -165,26 +340,33 @@
     </div>
 
 
-    <!-- نافذة التحقق من العمر -->
-
-    <div class="age-overlay" id="ageOverlay">
+    <!-- نافذة 18+ -->
+    <div class="age-screen" id="ageScreen">
 
         <div class="age-box">
 
-            <h2>🔞 التحقق من العمر</h2>
+            <div class="age-icon">🔞</div>
 
-            <p>
+            <h2 class="age-title">
+                التحقق من العمر
+            </h2>
+
+            <p class="age-description">
                 هل عمرك 18 سنة أو أكثر؟
             </p>
 
             <div class="buttons">
 
-                <button class="yes" onclick="enterWebsite()">
-                    نعم، عمري 18+
+                <button
+                    class="age-button yes-button"
+                    onclick="enterWebsite()">
+                    ✓ نعم، عمري 18+
                 </button>
 
-                <button class="no" onclick="blockWebsite()">
-                    لا
+                <button
+                    class="age-button no-button"
+                    onclick="leaveWebsite()">
+                    ✕ لا
                 </button>
 
             </div>
@@ -194,8 +376,7 @@
     </div>
 
 
-    <!-- شاشة منع الدخول -->
-
+    <!-- منع الدخول -->
     <div class="blocked" id="blocked">
 
         <div>
@@ -203,7 +384,7 @@
             <h2>لا يمكن الدخول</h2>
 
             <p>
-                يجب أن يكون عمرك 18 سنة أو أكثر للدخول إلى هذا الموقع.
+                يجب أن يكون عمرك 18 سنة أو أكثر للدخول.
             </p>
 
         </div>
@@ -214,11 +395,25 @@
     <script>
 
         function enterWebsite() {
-            document.getElementById("ageOverlay").style.display = "none";
+
+            const screen = document.getElementById("ageScreen");
+
+            screen.style.opacity = "0";
+
+            screen.style.transition = "opacity 0.5s ease";
+
+            setTimeout(function() {
+
+                screen.style.display = "none";
+
+            }, 500);
         }
 
-        function blockWebsite() {
-            document.getElementById("ageOverlay").style.display = "none";
+
+        function leaveWebsite() {
+
+            document.getElementById("ageScreen").style.display = "none";
+
             document.getElementById("blocked").style.display = "flex";
         }
 
