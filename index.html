@@ -6,20 +6,18 @@
 
 <title>عرب زون — ARABZONE</title>
 
-<!-- Cloudflare Turnstile -->
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <style>
 :root {
     --purple: #8b35ff;
-    --purple-light: #b77aff;
-    --purple-dark: #4d1699;
-    --white: #ffffff;
+    --purple-light: #b985ff;
+    --purple-dark: #5b18b8;
+    --white: #fff;
     --bg: #050507;
-    --card: #101014;
-    --text: #f5f5f7;
-    --muted: #92929b;
+    --card: #111116;
     --border: rgba(255,255,255,.09);
+    --muted: #92929c;
 }
 
 * {
@@ -35,30 +33,29 @@ html {
 body {
     font-family: Arial, sans-serif;
     background: var(--bg);
-    color: var(--text);
+    color: var(--white);
     min-height: 100vh;
 }
 
-/* =========================
-   BACKGROUND
-========================= */
+/* ================= BACKGROUND ================= */
 
 .background {
     position: fixed;
     inset: 0;
     z-index: -2;
     overflow: hidden;
+
     background:
         radial-gradient(
             circle at 50% -10%,
-            rgba(139,53,255,.28),
+            rgba(139,53,255,.27),
             transparent 38%
         ),
         linear-gradient(
             180deg,
-            #09050f 0%,
-            #050507 45%,
-            #030304 100%
+            #09050f,
+            #050507 50%,
+            #030304
         );
 }
 
@@ -67,69 +64,60 @@ body {
     width: 350px;
     height: 350px;
     border-radius: 50%;
-    filter: blur(110px);
-    opacity: .22;
+    filter: blur(120px);
+    opacity: .2;
 }
 
 .glow.one {
     background: var(--purple);
-    top: -180px;
+    top: -170px;
     right: -100px;
 }
 
 .glow.two {
-    background: #5f1cff;
+    background: #651cff;
     bottom: -180px;
     left: -120px;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* ================= HEADER ================= */
 
 .header {
     position: sticky;
     top: 0;
     z-index: 50;
 
-    width: 100%;
-
-    background: rgba(5,5,7,.78);
+    background: rgba(5,5,7,.82);
     backdrop-filter: blur(18px);
 
     border-bottom: 1px solid var(--border);
 }
 
 .header-inner {
-    max-width: 1250px;
+    max-width: 900px;
     margin: auto;
 
-    min-height: 76px;
+    padding: 14px 18px;
 
     display: flex;
     align-items: center;
-    gap: 25px;
-
-    padding: 12px 20px;
+    gap: 15px;
 }
-
-/* LOGO */
 
 .logo {
     flex-shrink: 0;
 
-    font-size: 23px;
-    font-weight: 900;
-
     color: white;
-
     text-decoration: none;
 
-    letter-spacing: -.5px;
+    font-size: 21px;
+    font-weight: 900;
+
+    white-space: nowrap;
 
     text-shadow:
-        0 0 8px rgba(255,255,255,.7),
-        0 0 24px rgba(139,53,255,.9);
+        0 0 8px white,
+        0 0 22px rgba(139,53,255,.8);
 }
 
 .logo span {
@@ -140,50 +128,46 @@ body {
 
 .search {
     flex: 1;
-    max-width: 650px;
-    margin: auto;
-
     position: relative;
 }
 
 .search input {
     width: 100%;
+    height: 46px;
 
-    height: 48px;
+    padding: 0 45px 0 16px;
 
-    border-radius: 14px;
-
-    padding: 0 50px 0 18px;
+    border-radius: 13px;
 
     background: rgba(255,255,255,.055);
 
     border: 1px solid var(--border);
 
-    color: white;
-
     outline: none;
 
-    font-size: 15px;
+    color: white;
+
+    font-size: 14px;
 
     transition: .25s;
 }
 
-.search input::placeholder {
-    color: #777780;
-}
-
 .search input:focus {
-    border-color: rgba(139,53,255,.7);
+    border-color: rgba(139,53,255,.65);
 
     box-shadow:
-        0 0 0 3px rgba(139,53,255,.09),
-        0 0 25px rgba(139,53,255,.12);
+        0 0 0 3px rgba(139,53,255,.08),
+        0 0 20px rgba(139,53,255,.12);
+}
+
+.search input::placeholder {
+    color: #74747d;
 }
 
 .search-icon {
     position: absolute;
 
-    right: 17px;
+    right: 15px;
     top: 50%;
 
     transform: translateY(-50%);
@@ -193,67 +177,68 @@ body {
     font-size: 20px;
 }
 
-/* MENU BUTTON */
+/* MENU */
 
 .menu-btn {
     width: 45px;
     height: 45px;
 
-    border-radius: 13px;
+    flex-shrink: 0;
 
-    background: rgba(255,255,255,.05);
+    border-radius: 13px;
 
     border: 1px solid var(--border);
 
+    background: rgba(255,255,255,.05);
+
     color: white;
 
-    cursor: pointer;
+    font-size: 19px;
 
-    font-size: 20px;
+    cursor: pointer;
 }
 
-/* =========================
-   HERO
-========================= */
+/* ================= MAIN ================= */
 
-.hero {
-    max-width: 1250px;
+.container {
+    width: 100%;
+    max-width: 900px;
 
     margin: auto;
 
-    padding: 65px 20px 35px;
+    padding: 28px 18px 50px;
 }
 
-.hero-content {
-    max-width: 760px;
+/* ================= HERO ================= */
+
+.hero {
+    padding: 22px 0 28px;
 }
 
 .badge {
-    display: inline-flex;
+    display: inline-block;
 
-    padding: 8px 13px;
+    padding: 7px 12px;
 
-    border-radius: 50px;
+    border-radius: 30px;
 
-    background: rgba(139,53,255,.11);
+    color: #d4b9ff;
 
-    border: 1px solid rgba(139,53,255,.3);
+    background: rgba(139,53,255,.1);
 
-    color: #caa9ff;
+    border: 1px solid rgba(139,53,255,.28);
 
-    font-size: 13px;
+    font-size: 12px;
 
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .hero h1 {
-    font-size: clamp(38px, 6vw, 68px);
+    font-size: clamp(34px, 7vw, 55px);
 
-    line-height: 1.05;
+    line-height: 1.08;
 
-    letter-spacing: -2px;
-
-    margin-bottom: 18px;
+    letter-spacing: -1.5px;
 }
 
 .hero h1 span {
@@ -264,40 +249,110 @@ body {
 }
 
 .hero p {
-    color: var(--muted);
+    margin-top: 14px;
 
-    font-size: 17px;
+    color: var(--muted);
 
     line-height: 1.8;
 
-    max-width: 600px;
+    font-size: 15px;
 }
 
-/* =========================
-   CONTENT
-========================= */
+/* ================= CATEGORIES ================= */
 
-.content {
-    max-width: 1250px;
+.category-wrapper {
+    position: relative;
 
-    margin: auto;
-
-    padding: 20px;
+    margin: 8px 0 25px;
 }
+
+.category-btn {
+    width: 100%;
+
+    padding: 14px 16px;
+
+    border-radius: 14px;
+
+    background: rgba(255,255,255,.045);
+
+    border: 1px solid var(--border);
+
+    color: white;
+
+    text-align: right;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.category-btn span {
+    color: var(--purple-light);
+}
+
+.category-menu {
+    display: none;
+
+    margin-top: 8px;
+
+    padding: 8px;
+
+    border-radius: 15px;
+
+    background: rgba(15,15,20,.97);
+
+    border: 1px solid rgba(139,53,255,.2);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.45);
+}
+
+.category-menu.show {
+    display: block;
+}
+
+.category-item {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: #ccc;
+
+    text-align: right;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+.category-item:hover,
+.category-item.active {
+    background: rgba(139,53,255,.13);
+
+    color: white;
+}
+
+/* ================= SECTION ================= */
 
 .section-header {
     display: flex;
 
-    justify-content: space-between;
-
     align-items: center;
 
-    margin: 30px 0 20px;
+    justify-content: space-between;
+
+    margin-bottom: 15px;
 }
 
 .section-title {
-    font-size: 22px;
-
+    font-size: 21px;
     font-weight: 800;
 }
 
@@ -307,59 +362,59 @@ body {
     display: inline-block;
 
     width: 4px;
-    height: 22px;
+    height: 21px;
 
-    background: var(--purple);
+    margin-left: 9px;
+
+    vertical-align: -3px;
 
     border-radius: 10px;
 
-    margin-left: 10px;
-
-    vertical-align: -4px;
+    background: var(--purple);
 
     box-shadow:
         0 0 12px var(--purple);
 }
 
-/* =========================
-   VIDEO GRID
-========================= */
+/* ================= VIDEOS ================= */
 
-.video-grid {
-    display: grid;
+.video-list {
+    display: flex;
 
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
+    flex-direction: column;
 
-    gap: 18px;
+    gap: 14px;
 }
 
 .video-card {
-    background: var(--card);
+    display: flex;
+
+    width: 100%;
+
+    min-height: 145px;
+
+    background: rgba(16,16,21,.88);
 
     border: 1px solid var(--border);
 
-    border-radius: 17px;
+    border-radius: 16px;
 
     overflow: hidden;
 
     cursor: pointer;
 
-    transition:
-        transform .3s ease,
-        border-color .3s ease,
-        box-shadow .3s ease;
+    transition: .25s;
 }
 
 .video-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-2px);
 
     border-color:
-        rgba(139,53,255,.55);
+        rgba(139,53,255,.5);
 
     box-shadow:
-        0 15px 45px rgba(0,0,0,.35),
-        0 0 25px rgba(139,53,255,.12);
+        0 10px 30px rgba(0,0,0,.35),
+        0 0 22px rgba(139,53,255,.1);
 }
 
 /* THUMBNAIL */
@@ -367,31 +422,18 @@ body {
 .thumbnail {
     position: relative;
 
-    aspect-ratio: 16 / 9;
+    flex: 0 0 245px;
 
-    overflow: hidden;
+    aspect-ratio: 16 / 9;
 
     background:
         linear-gradient(
             135deg,
-            #25113f,
-            #09070d
+            #291047,
+            #09070c
         );
-}
 
-.thumbnail::after {
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-        linear-gradient(
-            180deg,
-            transparent 45%,
-            rgba(0,0,0,.75)
-        );
+    overflow: hidden;
 }
 
 .thumbnail-number {
@@ -404,28 +446,10 @@ body {
     justify-content: center;
     align-items: center;
 
-    font-size: 42px;
-
+    font-size: 48px;
     font-weight: 900;
 
-    color: rgba(255,255,255,.14);
-}
-
-.duration {
-    position: absolute;
-
-    bottom: 9px;
-    left: 9px;
-
-    z-index: 2;
-
-    padding: 5px 7px;
-
-    border-radius: 6px;
-
-    background: rgba(0,0,0,.78);
-
-    font-size: 11px;
+    color: rgba(255,255,255,.11);
 }
 
 .play {
@@ -435,11 +459,10 @@ body {
     left: 50%;
 
     transform:
-        translate(-50%,-50%)
-        scale(.8);
+        translate(-50%,-50%);
 
-    width: 52px;
-    height: 52px;
+    width: 48px;
+    height: 48px;
 
     border-radius: 50%;
 
@@ -448,83 +471,173 @@ body {
     align-items: center;
     justify-content: center;
 
-    background: rgba(139,53,255,.92);
-
-    opacity: 0;
-
-    z-index: 3;
-
-    transition: .3s;
+    background: rgba(139,53,255,.9);
 
     box-shadow:
-        0 0 35px rgba(139,53,255,.65);
+        0 0 25px rgba(139,53,255,.55);
 }
 
-.video-card:hover .play {
-    opacity: 1;
+.duration {
+    position: absolute;
 
-    transform:
-        translate(-50%,-50%)
-        scale(1);
+    left: 8px;
+    bottom: 8px;
+
+    z-index: 2;
+
+    padding: 4px 6px;
+
+    border-radius: 5px;
+
+    background: rgba(0,0,0,.8);
+
+    font-size: 11px;
 }
 
 /* INFO */
 
 .video-info {
-    padding: 13px;
+    flex: 1;
+
+    padding: 16px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
 }
 
 .video-title {
-    font-size: 15px;
+    font-size: 16px;
 
-    line-height: 1.5;
+    font-weight: bold;
 
-    font-weight: 700;
+    line-height: 1.55;
 
-    display: -webkit-box;
-
-    -webkit-line-clamp: 2;
-
-    -webkit-box-orient: vertical;
-
-    overflow: hidden;
+    margin-bottom: 10px;
 }
 
 .video-meta {
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.8;
+}
+
+.video-category {
+    display: inline-block;
+
+    width: fit-content;
+
     margin-top: 8px;
 
+    padding: 4px 8px;
+
+    border-radius: 6px;
+
+    color: #caa9ff;
+
+    background: rgba(139,53,255,.09);
+
+    font-size: 10px;
+}
+
+/* ================= PAGINATION ================= */
+
+.pagination {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: 28px;
+}
+
+.page-btn {
+    min-width: 40px;
+    height: 40px;
+
+    padding: 0 10px;
+
+    border-radius: 10px;
+
+    border: 1px solid var(--border);
+
+    background: rgba(255,255,255,.04);
+
+    color: #bbb;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.page-btn:hover {
+    border-color:
+        rgba(139,53,255,.5);
+
+    color: white;
+}
+
+.page-btn.active {
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--purple-dark)
+        );
+
+    border-color:
+        var(--purple-light);
+
+    color: white;
+
+    box-shadow:
+        0 0 18px rgba(139,53,255,.25);
+}
+
+.page-btn:disabled {
+    opacity: .35;
+    cursor: default;
+}
+
+/* ================= NO RESULTS ================= */
+
+.no-results {
+    display: none;
+
+    padding: 70px 20px;
+
+    text-align: center;
+
     color: var(--muted);
+}
+
+.no-results div {
+    font-size: 42px;
+
+    margin-bottom: 12px;
+}
+
+/* ================= FOOTER ================= */
+
+.footer {
+    text-align: center;
+
+    padding: 30px 20px;
+
+    border-top: 1px solid var(--border);
+
+    color: #666;
 
     font-size: 12px;
 }
 
-/* =========================
-   SEARCH RESULTS
-========================= */
-
-#results {
-    display: none;
-}
-
-.no-results {
-    text-align: center;
-
-    padding: 70px 20px;
-
-    color: var(--muted);
-}
-
-.no-results-icon {
-    font-size: 45px;
-
-    margin-bottom: 15px;
-
-    opacity: .5;
-}
-
-/* =========================
-   AGE SCREEN
-========================= */
+/* ================= AGE ================= */
 
 .age-screen {
     position: fixed;
@@ -535,23 +648,21 @@ body {
 
     display: flex;
 
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
     padding: 20px;
 
-    background:
-        rgba(0,0,0,.82);
+    background: rgba(0,0,0,.86);
 
     backdrop-filter: blur(18px);
 }
 
 .age-card {
     width: 100%;
+    max-width: 420px;
 
-    max-width: 430px;
-
-    padding: 38px 25px 30px;
+    padding: 35px 23px 28px;
 
     text-align: center;
 
@@ -560,47 +671,46 @@ body {
     background:
         linear-gradient(
             145deg,
-            rgba(23,19,30,.96),
-            rgba(9,8,12,.98)
+            rgba(23,19,30,.97),
+            rgba(8,8,11,.98)
         );
 
     border:
         1px solid rgba(139,53,255,.35);
 
     box-shadow:
-        0 0 35px rgba(139,53,255,.22),
+        0 0 35px rgba(139,53,255,.2),
         0 30px 100px rgba(0,0,0,.6);
 }
 
 .age-icon {
-    width: 78px;
-    height: 78px;
+    width: 76px;
+    height: 76px;
 
-    margin: auto auto 20px;
+    margin: auto auto 18px;
 
     border-radius: 50%;
 
     display: flex;
 
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
-    font-size: 35px;
+    font-size: 34px;
+
+    background: rgba(139,53,255,.1);
 
     border:
-        1px solid rgba(139,53,255,.6);
-
-    background:
-        rgba(139,53,255,.1);
+        1px solid rgba(139,53,255,.55);
 
     box-shadow:
-        0 0 35px rgba(139,53,255,.25);
+        0 0 30px rgba(139,53,255,.25);
 }
 
 .age-card h2 {
-    font-size: 27px;
+    font-size: 26px;
 
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .age-card p {
@@ -608,15 +718,15 @@ body {
 
     line-height: 1.8;
 
-    margin-bottom: 22px;
+    margin-bottom: 20px;
 }
 
-.turnstile {
+.turnstile-box {
+    min-height: 65px;
+
     display: flex;
 
     justify-content: center;
-
-    min-height: 65px;
 
     margin-bottom: 18px;
 }
@@ -624,25 +734,21 @@ body {
 .age-buttons {
     display: flex;
 
-    gap: 12px;
+    gap: 10px;
 }
 
 .age-buttons button {
     flex: 1;
 
-    border-radius: 13px;
+    padding: 14px;
 
-    padding: 15px;
+    border-radius: 12px;
 
     color: white;
 
     font-weight: bold;
 
-    font-size: 15px;
-
     cursor: pointer;
-
-    transition: .25s;
 }
 
 .enter-btn {
@@ -650,25 +756,14 @@ body {
         linear-gradient(
             135deg,
             #8b35ff,
-            #6420c5
+            #5b18b8
         );
 
     border: 1px solid #a66aff;
-
-    box-shadow:
-        0 0 20px rgba(139,53,255,.25);
-}
-
-.enter-btn:hover:not(:disabled) {
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 0 30px rgba(139,53,255,.5);
 }
 
 .enter-btn:disabled {
     opacity: .4;
-
     cursor: not-allowed;
 }
 
@@ -678,43 +773,12 @@ body {
     border: 1px solid rgba(255,255,255,.12);
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* ================= MOBILE ================= */
 
-.footer {
-    max-width: 1250px;
-
-    margin: 60px auto 0;
-
-    padding: 25px 20px;
-
-    border-top: 1px solid var(--border);
-
-    color: #666;
-
-    text-align: center;
-
-    font-size: 12px;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 900px) {
-
-    .video-grid {
-        grid-template-columns:
-            repeat(3, minmax(0,1fr));
-    }
-
-}
-
-@media (max-width: 650px) {
+@media (max-width: 600px) {
 
     .header-inner {
-        gap: 10px;
+        flex-wrap: wrap;
     }
 
     .logo {
@@ -724,57 +788,49 @@ body {
     .search {
         order: 3;
 
-        width: 100%;
-
-        max-width: none;
+        flex-basis: 100%;
     }
 
-    .header-inner {
-        flex-wrap: wrap;
-
-        padding-bottom: 14px;
+    .container {
+        padding-top: 20px;
     }
 
     .hero {
-        padding-top: 45px;
+        padding-top: 10px;
     }
 
     .hero h1 {
-        font-size: 42px;
+        font-size: 38px;
     }
 
-    .video-grid {
-        grid-template-columns:
-            repeat(2, minmax(0,1fr));
+    .video-card {
+        display: block;
+    }
 
-        gap: 12px;
+    .thumbnail {
+        width: 100%;
+
+        height: auto;
+
+        aspect-ratio: 16 / 9;
     }
 
     .video-info {
-        padding: 10px;
+        padding: 13px;
     }
 
     .video-title {
-        font-size: 13px;
+        font-size: 15px;
     }
 
     .age-buttons {
         flex-direction: column;
     }
 }
-
-@media (max-width: 390px) {
-
-    .video-grid {
-        grid-template-columns: 1fr;
-    }
-}
 </style>
 </head>
 
 <body>
-
-<!-- BACKGROUND -->
 
 <div class="background">
     <div class="glow one"></div>
@@ -797,15 +853,17 @@ body {
             <span class="search-icon">⌕</span>
 
             <input
-                type="search"
                 id="searchInput"
+                type="search"
                 placeholder="ابحث عن فيديو..."
                 autocomplete="off"
             >
 
         </div>
 
-        <button class="menu-btn" aria-label="القائمة">
+        <button
+            class="menu-btn"
+            onclick="toggleCategories()">
             ☰
         </button>
 
@@ -814,58 +872,117 @@ body {
 </header>
 
 
-<!-- HERO -->
+<!-- MAIN -->
 
-<section class="hero">
+<main class="container">
 
-    <div class="hero-content">
+
+    <!-- HERO -->
+
+    <section class="hero">
 
         <div class="badge">
-            ✦ منصة الفيديوهات
+            ✦ مرحبًا بك في عرب زون
         </div>
 
         <h1>
-            اكتشف ما تبحث عنه
+            اكتشف الفيديوهات
             <br>
-            في <span>عرب زون</span>
+            في <span>ARABZONE</span>
         </h1>
 
         <p>
-            ابحث، اكتشف واستمتع بالمحتوى الموجود على
-            ARABZONE من خلال تجربة سريعة وعصرية.
+            ابحث عن المحتوى الذي تريده واستكشف أحدث الفيديوهات.
         </p>
+
+    </section>
+
+
+    <!-- CATEGORIES -->
+
+    <div class="category-wrapper">
+
+        <button
+            class="category-btn"
+            onclick="toggleCategories()">
+
+            ☰ &nbsp; التصنيفات
+            <span id="selectedCategory">
+                الكل
+            </span>
+
+        </button>
+
+
+        <div
+            class="category-menu"
+            id="categoryMenu">
+
+            <button
+                class="category-item active"
+                onclick="selectCategory('الكل', this)">
+                الكل
+            </button>
+
+            <button
+                class="category-item"
+                onclick="selectCategory('الأحدث', this)">
+                الأحدث
+            </button>
+
+            <button
+                class="category-item"
+                onclick="selectCategory('الأكثر مشاهدة', this)">
+                الأكثر مشاهدة
+            </button>
+
+            <button
+                class="category-item"
+                onclick="selectCategory('التصنيف الأول', this)">
+                التصنيف الأول
+            </button>
+
+            <button
+                class="category-item"
+                onclick="selectCategory('التصنيف الثاني', this)">
+                التصنيف الثاني
+            </button>
+
+            <button
+                class="category-item"
+                onclick="selectCategory('التصنيف الثالث', this)">
+                التصنيف الثالث
+            </button>
+
+        </div>
 
     </div>
 
-</section>
 
+    <!-- VIDEO SECTION -->
 
-<!-- CONTENT -->
-
-<main class="content">
-
-    <!-- NORMAL CONTENT -->
-
-    <section id="homeContent">
+    <section>
 
         <div class="section-header">
 
             <h2 class="section-title">
-                أحدث الفيديوهات
+                الفيديوهات
             </h2>
 
         </div>
 
 
-        <div class="video-grid" id="videoGrid">
+        <div
+            class="video-list"
+            id="videoList">
+
 
             <!-- VIDEO 1 -->
 
             <article
                 class="video-card"
-                data-title="فيديو تجريبي رقم واحد"
-                data-category="جديد"
-            >
+                data-title="الفيديو التجريبي الأول"
+                data-category="الأحدث">
 
                 <div class="thumbnail">
 
@@ -886,12 +1003,18 @@ body {
                 <div class="video-info">
 
                     <div class="video-title">
-                        فيديو تجريبي رقم واحد
+                        الفيديو التجريبي الأول
                     </div>
 
                     <div class="video-meta">
-                        1.2K مشاهدة • منذ يوم
+                        👁 1.2K مشاهدة
+                        <br>
+                        منذ يوم
                     </div>
+
+                    <span class="video-category">
+                        الأحدث
+                    </span>
 
                 </div>
 
@@ -902,9 +1025,8 @@ body {
 
             <article
                 class="video-card"
-                data-title="فيديو تجريبي رقم اثنين"
-                data-category="شائع"
-            >
+                data-title="الفيديو التجريبي الثاني"
+                data-category="الأكثر مشاهدة">
 
                 <div class="thumbnail">
 
@@ -925,12 +1047,18 @@ body {
                 <div class="video-info">
 
                     <div class="video-title">
-                        فيديو تجريبي رقم اثنين
+                        الفيديو التجريبي الثاني
                     </div>
 
                     <div class="video-meta">
-                        3.8K مشاهدة • منذ يومين
+                        👁 4.8K مشاهدة
+                        <br>
+                        منذ يومين
                     </div>
+
+                    <span class="video-category">
+                        الأكثر مشاهدة
+                    </span>
 
                 </div>
 
@@ -941,9 +1069,8 @@ body {
 
             <article
                 class="video-card"
-                data-title="فيديو تجريبي رقم ثلاثة"
-                data-category="جديد"
-            >
+                data-title="الفيديو التجريبي الثالث"
+                data-category="التصنيف الأول">
 
                 <div class="thumbnail">
 
@@ -964,12 +1091,18 @@ body {
                 <div class="video-info">
 
                     <div class="video-title">
-                        فيديو تجريبي رقم ثلاثة
+                        الفيديو التجريبي الثالث
                     </div>
 
                     <div class="video-meta">
-                        5.1K مشاهدة • منذ 3 أيام
+                        👁 6.1K مشاهدة
+                        <br>
+                        منذ 3 أيام
                     </div>
+
+                    <span class="video-category">
+                        التصنيف الأول
+                    </span>
 
                 </div>
 
@@ -980,9 +1113,8 @@ body {
 
             <article
                 class="video-card"
-                data-title="فيديو تجريبي رقم أربعة"
-                data-category="شائع"
-            >
+                data-title="الفيديو التجريبي الرابع"
+                data-category="التصنيف الثاني">
 
                 <div class="thumbnail">
 
@@ -1003,12 +1135,282 @@ body {
                 <div class="video-info">
 
                     <div class="video-title">
-                        فيديو تجريبي رقم أربعة
+                        الفيديو التجريبي الرابع
                     </div>
 
                     <div class="video-meta">
-                        8.4K مشاهدة • منذ 4 أيام
+                        👁 8.4K مشاهدة
+                        <br>
+                        منذ 4 أيام
                     </div>
+
+                    <span class="video-category">
+                        التصنيف الثاني
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <!-- VIDEO 5 -->
+
+            <article
+                class="video-card"
+                data-title="الفيديو التجريبي الخامس"
+                data-category="التصنيف الثالث">
+
+                <div class="thumbnail">
+
+                    <div class="thumbnail-number">
+                        05
+                    </div>
+
+                    <div class="play">
+                        ▶
+                    </div>
+
+                    <div class="duration">
+                        10:18
+                    </div>
+
+                </div>
+
+                <div class="video-info">
+
+                    <div class="video-title">
+                        الفيديو التجريبي الخامس
+                    </div>
+
+                    <div class="video-meta">
+                        👁 2.6K مشاهدة
+                        <br>
+                        منذ 5 أيام
+                    </div>
+
+                    <span class="video-category">
+                        التصنيف الثالث
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <!-- VIDEO 6 -->
+
+            <article
+                class="video-card"
+                data-title="الفيديو التجريبي السادس"
+                data-category="الأحدث">
+
+                <div class="thumbnail">
+
+                    <div class="thumbnail-number">
+                        06
+                    </div>
+
+                    <div class="play">
+                        ▶
+                    </div>
+
+                    <div class="duration">
+                        14:20
+                    </div>
+
+                </div>
+
+                <div class="video-info">
+
+                    <div class="video-title">
+                        الفيديو التجريبي السادس
+                    </div>
+
+                    <div class="video-meta">
+                        👁 3.3K مشاهدة
+                        <br>
+                        منذ 6 أيام
+                    </div>
+
+                    <span class="video-category">
+                        الأحدث
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <!-- VIDEO 7 -->
+
+            <article
+                class="video-card"
+                data-title="الفيديو التجريبي السابع"
+                data-category="الأكثر مشاهدة">
+
+                <div class="thumbnail">
+
+                    <div class="thumbnail-number">
+                        07
+                    </div>
+
+                    <div class="play">
+                        ▶
+                    </div>
+
+                    <div class="duration">
+                        19:44
+                    </div>
+
+                </div>
+
+                <div class="video-info">
+
+                    <div class="video-title">
+                        الفيديو التجريبي السابع
+                    </div>
+
+                    <div class="video-meta">
+                        👁 9.7K مشاهدة
+                        <br>
+                        منذ أسبوع
+                    </div>
+
+                    <span class="video-category">
+                        الأكثر مشاهدة
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <!-- VIDEO 8 -->
+
+            <article
+                class="video-card"
+                data-title="الفيديو التجريبي الثامن"
+                data-category="التصنيف الأول">
+
+                <div class="thumbnail">
+
+                    <div class="thumbnail-number">
+                        08
+                    </div>
+
+                    <div class="play">
+                        ▶
+                    </div>
+
+                    <div class="duration">
+                        07:55
+                    </div>
+
+                </div>
+
+                <div class="video-info">
+
+                    <div class="video-title">
+                        الفيديو التجريبي الثامن
+                    </div>
+
+                    <div class="video-meta">
+                        👁 4.2K مشاهدة
+                        <br>
+                        منذ أسبوع
+                    </div>
+
+                    <span class="video-category">
+                        التصنيف الأول
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <!-- VIDEO 9 -->
+
+            <article
+                class="video-card"
+                data-title="الفيديو التجريبي التاسع"
+                data-category="التصنيف الثاني">
+
+                <div class="thumbnail">
+
+                    <div class="thumbnail-number">
+                        09
+                    </div>
+
+                    <div class="play">
+                        ▶
+                    </div>
+
+                    <div class="duration">
+                        23:10
+                    </div>
+
+                </div>
+
+                <div class="video-info">
+
+                    <div class="video-title">
+                        الفيديو التجريبي التاسع
+                    </div>
+
+                    <div class="video-meta">
+                        👁 7.9K مشاهدة
+                        <br>
+                        منذ أسبوعين
+                    </div>
+
+                    <span class="video-category">
+                        التصنيف الثاني
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <!-- VIDEO 10 -->
+
+            <article
+                class="video-card"
+                data-title="الفيديو التجريبي العاشر"
+                data-category="التصنيف الثالث">
+
+                <div class="thumbnail">
+
+                    <div class="thumbnail-number">
+                        10
+                    </div>
+
+                    <div class="play">
+                        ▶
+                    </div>
+
+                    <div class="duration">
+                        16:38
+                    </div>
+
+                </div>
+
+                <div class="video-info">
+
+                    <div class="video-title">
+                        الفيديو التجريبي العاشر
+                    </div>
+
+                    <div class="video-meta">
+                        👁 5.5K مشاهدة
+                        <br>
+                        منذ أسبوعين
+                    </div>
+
+                    <span class="video-category">
+                        التصنيف الثالث
+                    </span>
 
                 </div>
 
@@ -1016,40 +1418,63 @@ body {
 
         </div>
 
-    </section>
 
-
-    <!-- SEARCH RESULTS -->
-
-    <section id="results">
-
-        <div class="section-header">
-
-            <h2 class="section-title">
-                نتائج البحث
-            </h2>
-
-        </div>
-
-        <div class="video-grid" id="resultsGrid"></div>
+        <!-- NO RESULTS -->
 
         <div
             class="no-results"
-            id="noResults"
-            style="display:none;"
-        >
+            id="noResults">
 
-            <div class="no-results-icon">
-                🔎
-            </div>
+            <div>🔎</div>
 
             <h3>
                 لم نجد نتائج
             </h3>
 
             <p>
-                جرّب البحث بكلمة أخرى.
+                جرّب كلمة بحث مختلفة.
             </p>
+
+        </div>
+
+
+        <!-- PAGINATION -->
+
+        <div
+            class="pagination"
+            id="pagination">
+
+            <button
+                class="page-btn"
+                id="prevBtn"
+                onclick="changePage(-1)">
+                السابق
+            </button>
+
+            <button
+                class="page-btn active"
+                onclick="goToPage(1)">
+                1
+            </button>
+
+            <button
+                class="page-btn"
+                onclick="goToPage(2)">
+                2
+            </button>
+
+            <button
+                class="page-btn"
+                onclick="goToPage(3)">
+                3
+            </button>
+
+            <button
+                class="page-btn"
+                id="nextBtn"
+                onclick="changePage(1)">
+                التالي
+            </button>
 
         </div>
 
@@ -1058,18 +1483,16 @@ body {
 </main>
 
 
-<!-- FOOTER -->
-
 <footer class="footer">
-
     © 2026 عرب زون — ARABZONE
-
 </footer>
 
 
-<!-- AGE VERIFICATION -->
+<!-- AGE SCREEN -->
 
-<div class="age-screen" id="ageScreen">
+<div
+    class="age-screen"
+    id="ageScreen">
 
     <div class="age-card">
 
@@ -1087,10 +1510,7 @@ body {
             يجب أن يكون عمرك 18 سنة أو أكثر للمتابعة.
         </p>
 
-
-        <!-- TURNSTILE -->
-
-        <div class="turnstile">
+        <div class="turnstile-box">
 
             <div
                 class="cf-turnstile"
@@ -1101,22 +1521,19 @@ body {
 
         </div>
 
-
         <div class="age-buttons">
 
             <button
                 class="enter-btn"
                 id="enterButton"
                 onclick="enterSite()"
-                disabled
-            >
+                disabled>
                 ✓ نعم، عمري 18+
             </button>
 
             <button
                 class="exit-btn"
-                onclick="blockSite()"
-            >
+                onclick="blockSite()">
                 ✕ خروج
             </button>
 
@@ -1130,7 +1547,7 @@ body {
 <script>
 
 /* =========================
-   TURNSTILE
+   AGE VERIFICATION
 ========================= */
 
 let turnstileVerified = false;
@@ -1143,15 +1560,8 @@ function turnstileSuccess(token) {
 
         document.getElementById("enterButton")
             .disabled = false;
-
     }
-
 }
-
-
-/* =========================
-   AGE VERIFICATION
-========================= */
 
 function enterSite() {
 
@@ -1160,7 +1570,6 @@ function enterSite() {
         alert("يرجى إكمال التحقق أولًا.");
 
         return;
-
     }
 
     const screen =
@@ -1179,147 +1588,182 @@ function enterSite() {
             "auto";
 
     }, 500);
-
 }
-
 
 function blockSite() {
 
-    document.getElementById("ageScreen")
-        .innerHTML = `
-            <div class="age-card">
+    document.getElementById("ageScreen").innerHTML = `
+        <div class="age-card">
 
-                <div class="age-icon">
-                    🔒
-                </div>
-
-                <h2>
-                    الدخول غير متاح
-                </h2>
-
-                <p>
-                    يجب أن يكون عمرك 18 سنة أو أكثر
-                    للدخول إلى عرب زون.
-                </p>
-
+            <div class="age-icon">
+                🔒
             </div>
-        `;
 
+            <h2>
+                الدخول غير متاح
+            </h2>
+
+            <p>
+                يجب أن يكون عمرك 18 سنة أو أكثر
+                للدخول إلى عرب زون.
+            </p>
+
+        </div>
+    `;
 }
 
 
 /* =========================
-   SEARCH ENGINE
+   CATEGORIES
+========================= */
+
+let selectedCategory = "الكل";
+
+function toggleCategories() {
+
+    const menu =
+        document.getElementById("categoryMenu");
+
+    menu.classList.toggle("show");
+}
+
+function selectCategory(category, element) {
+
+    selectedCategory = category;
+
+    document.getElementById("selectedCategory")
+        .textContent = category;
+
+    document
+        .querySelectorAll(".category-item")
+        .forEach(item => {
+            item.classList.remove("active");
+        });
+
+    element.classList.add("active");
+
+    document
+        .getElementById("categoryMenu")
+        .classList.remove("show");
+
+    filterVideos();
+}
+
+
+/* =========================
+   SEARCH
 ========================= */
 
 const searchInput =
     document.getElementById("searchInput");
 
-const homeContent =
-    document.getElementById("homeContent");
-
-const results =
-    document.getElementById("results");
-
-const videoGrid =
-    document.getElementById("videoGrid");
-
-const resultsGrid =
-    document.getElementById("resultsGrid");
-
-const noResults =
-    document.getElementById("noResults");
-
-
 searchInput.addEventListener(
     "input",
-    function () {
+    filterVideos
+);
 
-        const query =
-            this.value
-                .trim()
-                .toLowerCase();
+function filterVideos() {
 
-        /* Empty search */
+    const query =
+        searchInput.value
+            .trim()
+            .toLowerCase();
 
-        if (query === "") {
+    const videos =
+        document.querySelectorAll(
+            "#videoList .video-card"
+        );
 
-            homeContent.style.display =
-                "block";
+    let found = 0;
 
-            results.style.display =
-                "none";
+    videos.forEach(video => {
 
-            return;
+        const title =
+            video.dataset.title.toLowerCase();
 
-        }
+        const category =
+            video.dataset.category;
 
+        const matchesSearch =
+            title.includes(query);
 
-        /* Show results */
+        const matchesCategory =
+            selectedCategory === "الكل" ||
+            category === selectedCategory;
 
-        homeContent.style.display =
-            "none";
+        if (
+            matchesSearch &&
+            matchesCategory
+        ) {
 
-        results.style.display =
-            "block";
+            video.style.display = "flex";
 
-
-        const videos =
-            Array.from(
-                videoGrid.querySelectorAll(
-                    ".video-card"
-                )
-            );
-
-
-        resultsGrid.innerHTML = "";
-
-
-        let found = 0;
-
-
-        videos.forEach(video => {
-
-            const title =
-                video.dataset.title
-                    .toLowerCase();
-
-            const category =
-                video.dataset.category
-                    .toLowerCase();
-
-
-            if (
-                title.includes(query) ||
-                category.includes(query)
-            ) {
-
-                const clone =
-                    video.cloneNode(true);
-
-                resultsGrid.appendChild(clone);
-
-                found++;
-
-            }
-
-        });
-
-
-        if (found === 0) {
-
-            noResults.style.display =
-                "block";
+            found++;
 
         } else {
 
-            noResults.style.display =
-                "none";
+            video.style.display = "none";
 
         }
 
+    });
+
+    document.getElementById("noResults")
+        .style.display =
+            found === 0 ? "block" : "none";
+
+}
+
+
+/* =========================
+   PAGINATION
+========================= */
+
+let currentPage = 1;
+
+function goToPage(page) {
+
+    currentPage = page;
+
+    document
+        .querySelectorAll(".page-btn")
+        .forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+    const pageButtons =
+        document.querySelectorAll(
+            ".pagination .page-btn"
+        );
+
+    if (pageButtons[page]) {
+        pageButtons[page]
+            .classList.add("active");
     }
-);
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* NEXT / PREVIOUS */
+
+function changePage(direction) {
+
+    let newPage =
+        currentPage + direction;
+
+    if (newPage < 1)
+        newPage = 1;
+
+    if (newPage > 3)
+        newPage = 3;
+
+    goToPage(newPage);
+}
 
 </script>
 
