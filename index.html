@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>موقعنا</title>
 
+<!-- Cloudflare Turnstile -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
 <style>
 * {
     box-sizing: border-box;
@@ -24,7 +27,6 @@ body {
     overflow: hidden;
 }
 
-/* خلفية */
 .background {
     position: fixed;
     inset: 0;
@@ -65,7 +67,6 @@ body {
     }
 }
 
-/* نقاط مضيئة */
 .stars {
     position: absolute;
     inset: 0;
@@ -85,7 +86,6 @@ body {
     }
 }
 
-/* النافذة */
 .age-screen {
     position: fixed;
     inset: 0;
@@ -101,7 +101,6 @@ body {
     backdrop-filter: blur(14px);
 }
 
-/* البطاقة */
 .card {
     width: 100%;
     max-width: 440px;
@@ -136,7 +135,6 @@ body {
     }
 }
 
-/* الأيقونة */
 .icon {
     width: 86px;
     height: 86px;
@@ -179,7 +177,6 @@ body {
     }
 }
 
-/* العنوان */
 h1 {
     font-size: 30px;
     margin-bottom: 13px;
@@ -194,10 +191,17 @@ h1 {
     color: #c6c6c6;
     font-size: 16px;
     line-height: 1.8;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
-/* الأزرار */
+/* Turnstile */
+.turnstile-box {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 22px;
+    min-height: 65px;
+}
+
 .buttons {
     display: flex;
     gap: 14px;
@@ -259,7 +263,6 @@ button:active {
     transform: scale(.95);
 }
 
-/* الموقع بعد الدخول */
 .website {
     position: relative;
     z-index: 2;
@@ -306,7 +309,6 @@ button:active {
     color: #aaa;
 }
 
-/* شاشة الرفض */
 .blocked {
     position: fixed;
     inset: 0;
@@ -334,7 +336,6 @@ button:active {
     line-height: 1.8;
 }
 
-/* الهاتف */
 @media (max-width: 500px) {
 
     .card {
@@ -374,14 +375,12 @@ button:active {
 
 <body>
 
-<!-- الخلفية -->
 <div class="background">
     <div class="light one"></div>
     <div class="light two"></div>
     <div class="stars"></div>
 </div>
 
-<!-- الصفحة -->
 <div class="website">
 
     <div class="header">
@@ -410,9 +409,25 @@ button:active {
             هل عمرك 18 سنة أو أكثر؟
         </p>
 
+        <!-- Cloudflare Turnstile -->
+        <div class="turnstile-box">
+
+            <div
+                class="cf-turnstile"
+                data-sitekey="0x4AAAAAAEbw-sexQcW-COiM"
+                data-theme="dark"
+                data-callback="turnstileSuccess">
+            </div>
+
+        </div>
+
         <div class="buttons">
 
-            <button class="yes" onclick="enterSite()">
+            <button
+                class="yes"
+                id="yesButton"
+                onclick="enterSite()"
+                disabled>
                 ✓ نعم، عمري 18+
             </button>
 
@@ -441,7 +456,28 @@ button:active {
 
 <script>
 
+let turnstileVerified = false;
+
+/* عندما ينجح Turnstile */
+function turnstileSuccess(token) {
+
+    if (token) {
+
+        turnstileVerified = true;
+
+        document.getElementById("yesButton").disabled = false;
+
+    }
+}
+
 function enterSite() {
+
+    if (!turnstileVerified) {
+
+        alert("يرجى إكمال التحقق أولًا.");
+
+        return;
+    }
 
     const screen = document.getElementById("ageScreen");
 
@@ -449,7 +485,9 @@ function enterSite() {
     screen.style.opacity = "0";
 
     setTimeout(() => {
+
         screen.style.display = "none";
+
     }, 500);
 }
 
@@ -458,6 +496,7 @@ function blockSite() {
     document.getElementById("ageScreen").style.display = "none";
 
     document.getElementById("blocked").style.display = "flex";
+
 }
 
 </script>
