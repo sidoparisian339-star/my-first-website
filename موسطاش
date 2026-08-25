@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Xx ARABZONE — مشاهدة</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#050507;
+    color:white;
+}
+
+/* الخلفية */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-1;
+
+    background:
+    radial-gradient(circle at 50% 0%,#321052 0%,transparent 40%),
+    #050507;
+}
+
+/* الهيدر */
+header{
+    position:sticky;
+    top:0;
+    z-index:10;
+
+    background:rgba(5,5,7,.88);
+    backdrop-filter:blur(15px);
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.nav{
+    max-width:1000px;
+    margin:auto;
+
+    padding:15px;
+
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:900;
+
+    white-space:nowrap;
+
+    text-shadow:
+        0 0 10px #fff,
+        0 0 25px #8b35ff;
+}
+
+.logo .xx{
+    font-size:30px;
+    color:#b77aff;
+}
+
+.search{
+    flex:1;
+}
+
+.search input{
+    width:100%;
+
+    padding:12px 16px;
+
+    border-radius:12px;
+
+    background:#ffffff08;
+
+    border:1px solid rgba(255,255,255,.1);
+
+    color:white;
+
+    outline:none;
+}
+
+/* الصفحة */
+.container{
+    max-width:900px;
+    margin:auto;
+
+    padding:25px 15px 60px;
+}
+
+/* المشغل */
+.player{
+    width:100%;
+
+    aspect-ratio:16/9;
+
+    background:
+    radial-gradient(circle,#241032,#050507 65%);
+
+    border-radius:18px;
+
+    border:1px solid rgba(170,100,255,.35);
+
+    box-shadow:
+    0 0 35px rgba(130,40,255,.15);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    position:relative;
+}
+
+.play{
+    width:72px;
+    height:72px;
+
+    border-radius:50%;
+
+    background:#8b35ff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:28px;
+
+    box-shadow:
+    0 0 25px rgba(139,53,255,.8);
+
+    cursor:pointer;
+}
+
+.demo{
+    position:absolute;
+    bottom:15px;
+    left:15px;
+
+    color:#777;
+    font-size:12px;
+}
+
+/* المعلومات */
+.title{
+    font-size:25px;
+    font-weight:bold;
+
+    margin-top:20px;
+
+    line-height:1.5;
+}
+
+.stats{
+    display:flex;
+    gap:15px;
+
+    color:#999;
+
+    font-size:13px;
+
+    margin-top:9px;
+}
+
+/* الأزرار */
+.actions{
+    display:flex;
+    gap:9px;
+
+    margin-top:18px;
+}
+
+.action{
+    padding:11px 15px;
+
+    border-radius:10px;
+
+    background:#ffffff08;
+
+    border:1px solid rgba(255,255,255,.1);
+
+    color:white;
+
+    cursor:pointer;
+}
+
+.action:hover{
+    background:#8b35ff20;
+    border-color:#8b35ff80;
+}
+
+/* البيانات */
+.info{
+    margin-top:20px;
+
+    padding:18px;
+
+    border-radius:15px;
+
+    background:#101015;
+
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.row{
+    margin-bottom:15px;
+}
+
+.label{
+    color:#888;
+    font-size:12px;
+
+    margin-bottom:8px;
+}
+
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+}
+
+.tag{
+    border:0;
+
+    padding:7px 10px;
+
+    border-radius:8px;
+
+    background:#8b35ff15;
+
+    color:#cdaaff;
+
+    cursor:pointer;
+}
+
+.description{
+    color:#aaa;
+
+    line-height:1.8;
+
+    font-size:14px;
+}
+
+/* الفيديوهات المقترحة */
+.section-title{
+    margin-top:30px;
+    margin-bottom:15px;
+
+    font-size:20px;
+    font-weight:bold;
+}
+
+.videos{
+    display:grid;
+    gap:12px;
+}
+
+.video{
+    display:flex;
+
+    background:#101015;
+
+    border:1px solid rgba(255,255,255,.07);
+
+    border-radius:14px;
+
+    overflow:hidden;
+
+    cursor:pointer;
+}
+
+.thumb{
+    width:210px;
+
+    aspect-ratio:16/9;
+
+    background:
+    linear-gradient(135deg,#321050,#09070c);
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    color:#9b5cff;
+
+    font-size:30px;
+}
+
+.vinfo{
+    padding:13px;
+}
+
+.vinfo h3{
+    font-size:15px;
+    line-height:1.5;
+}
+
+.vinfo p{
+    color:#777;
+    font-size:12px;
+
+    margin-top:8px;
+}
+
+/* التعليقات */
+.comments{
+    margin-top:30px;
+
+    padding:18px;
+
+    border-radius:15px;
+
+    background:#101015;
+
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.comment-input{
+    width:100%;
+
+    min-height:90px;
+
+    resize:none;
+
+    margin-top:12px;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    background:#08080b;
+
+    border:1px solid rgba(255,255,255,.1);
+
+    color:white;
+}
+
+.comment-button{
+    margin-top:10px;
+
+    padding:11px 18px;
+
+    border:0;
+
+    border-radius:9px;
+
+    background:#8b35ff;
+
+    color:white;
+
+    font-weight:bold;
+}
+
+/* الهاتف */
+@media(max-width:600px){
+
+    .nav{
+        flex-wrap:wrap;
+    }
+
+    .search{
+        order:3;
+        flex-basis:100%;
+    }
+
+    .title{
+        font-size:20px;
+    }
+
+    .actions{
+        flex-wrap:wrap;
+    }
+
+    .video{
+        display:block;
+    }
+
+    .thumb{
+        width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="nav">
+
+<div class="logo">
+<span class="xx">Xx</span> ARABZONE
+</div>
+
+<div class="search">
+<input
+type="text"
+placeholder="ابحث عن فيديو، تصنيف أو ممثل..."
+>
+</div>
+
+</div>
+
+</header>
+
+
+<main class="container">
+
+<!-- المشغل -->
+
+<div class="player">
+
+<div class="play">▶</div>
+
+<div class="demo">
+فيديو تجريبي
+</div>
+
+</div>
+
+
+<!-- عنوان الفيديو -->
+
+<h1 class="title">
+عنوان الفيديو التجريبي يظهر هنا
+</h1>
+
+<div class="stats">
+
+<span>👁 125,430 مشاهدة</span>
+
+<span>⏱ 18:42</span>
+
+<span>📅 اليوم</span>
+
+</div>
+
+
+<!-- الأزرار -->
+
+<div class="actions">
+
+<button class="action">
+⭐ المفضلة
+</button>
+
+<button class="action">
+↗ مشاركة
+</button>
+
+<button class="action">
+⬇ تنزيل
+</button>
+
+<button class="action">
+🚩 إبلاغ
+</button>
+
+</div>
+
+
+<!-- معلومات الفيديو -->
+
+<div class="info">
+
+<div class="row">
+
+<div class="label">
+التصنيفات
+</div>
+
+<div class="tags">
+
+<button class="tag">
+تصنيف أول
+</button>
+
+<button class="tag">
+تصنيف ثاني
+</button>
+
+<button class="tag">
+الأكثر مشاهدة
+</button>
+
+</div>
+
+</div>
+
+
+<div class="row">
+
+<div class="label">
+الممثلون
+</div>
+
+<div class="tags">
+
+<button class="tag">
+ممثل تجريبي 1
+</button>
+
+<button class="tag">
+ممثل تجريبي 2
+</button>
+
+</div>
+
+</div>
+
+
+<div>
+
+<div class="label">
+الوصف
+</div>
+
+<p class="description">
+هذا مكان وصف الفيديو. لاحقًا سيتم جلب الوصف
+والتصنيفات والممثلين تلقائيًا من قاعدة البيانات.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- المقترحات -->
+
+<h2 class="section-title">
+🔥 فيديوهات مقترحة
+</h2>
+
+<div class="videos">
+
+<div class="video">
+
+<div class="thumb">
+▶
+</div>
+
+<div class="vinfo">
+
+<h3>
+فيديو مقترح رقم 01
+</h3>
+
+<p>
+👁 82K مشاهدة
+</p>
+
+</div>
+
+</div>
+
+
+<div class="video">
+
+<div class="thumb">
+▶
+</div>
+
+<div class="vinfo">
+
+<h3>
+فيديو مقترح رقم 02
+</h3>
+
+<p>
+👁 64K مشاهدة
+</p>
+
+</div>
+
+</div>
+
+
+<div class="video">
+
+<div class="thumb">
+▶
+</div>
+
+<div class="vinfo">
+
+<h3>
+فيديو مقترح رقم 03
+</h3>
+
+<p>
+👁 51K مشاهدة
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- التعليقات -->
+
+<h2 class="section-title">
+💬 التعليقات
+</h2>
+
+<div class="comments">
+
+<p style="color:#aaa">
+سجّل الدخول لإضافة تعليق.
+</p>
+
+<textarea
+class="comment-input"
+placeholder="اكتب تعليقك..."
+></textarea>
+
+<button class="comment-button">
+إضافة تعليق
+</button>
+
+</div>
+
+</main>
+
+</body>
+</html>
