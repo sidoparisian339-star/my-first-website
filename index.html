@@ -4,827 +4,546 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>عرب زون — ARABZONE</title>
-
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<title>Xx ARABZONE — عرب زون</title>
 
 <style>
-:root {
-    --purple: #8b35ff;
-    --purple-light: #b985ff;
-    --purple-dark: #5b18b8;
-    --white: #fff;
-    --bg: #050507;
-    --card: #111116;
-    --border: rgba(255,255,255,.09);
-    --muted: #92929c;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+:root{
+    --bg:#07060a;
+    --card:#111018;
+    --card2:#171521;
+    --purple:#9b4dff;
+    --purple2:#c28aff;
+    --text:#fff;
+    --muted:#9993a5;
+    --border:rgba(255,255,255,.09);
 }
 
-html {
-    scroll-behavior: smooth;
+body{
+    font-family:Arial,Tahoma,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background: var(--bg);
-    color: var(--white);
-    min-height: 100vh;
-}
-
-/* ================= BACKGROUND ================= */
-
-.background {
-    position: fixed;
-    inset: 0;
-    z-index: -2;
-    overflow: hidden;
-
+/* خلفية */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-2;
     background:
-        radial-gradient(
-            circle at 50% -10%,
-            rgba(139,53,255,.27),
-            transparent 38%
-        ),
-        linear-gradient(
-            180deg,
-            #09050f,
-            #050507 50%,
-            #030304
-        );
+    radial-gradient(circle at 80% 0%,rgba(139,53,255,.20),transparent 35%),
+    radial-gradient(circle at 10% 80%,rgba(139,53,255,.10),transparent 35%),
+    #07060a;
 }
 
-.glow {
-    position: absolute;
-    width: 350px;
-    height: 350px;
-    border-radius: 50%;
-    filter: blur(120px);
-    opacity: .2;
+/* الهيدر */
+header{
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    background:rgba(7,6,10,.90);
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid var(--border);
 }
 
-.glow.one {
-    background: var(--purple);
-    top: -170px;
-    right: -100px;
+.nav{
+    max-width:1200px;
+    margin:auto;
+
+    min-height:72px;
+    padding:12px 18px;
+
+    display:flex;
+    align-items:center;
+    gap:18px;
 }
 
-.glow.two {
-    background: #651cff;
-    bottom: -180px;
-    left: -120px;
+/* القائمة */
+.menu{
+    width:44px;
+    height:44px;
+
+    border:1px solid var(--border);
+    border-radius:12px;
+
+    background:#ffffff08;
+    color:white;
+
+    font-size:23px;
+
+    cursor:pointer;
 }
 
-/* ================= HEADER ================= */
+/* الشعار */
+.logo{
+    white-space:nowrap;
 
-.header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-
-    background: rgba(5,5,7,.82);
-    backdrop-filter: blur(18px);
-
-    border-bottom: 1px solid var(--border);
-}
-
-.header-inner {
-    max-width: 900px;
-    margin: auto;
-
-    padding: 14px 18px;
-
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.logo {
-    flex-shrink: 0;
-
-    color: white;
-    text-decoration: none;
-
-    font-size: 21px;
-    font-weight: 900;
-
-    white-space: nowrap;
+    font-weight:900;
+    font-size:21px;
 
     text-shadow:
-        0 0 8px white,
-        0 0 22px rgba(139,53,255,.8);
+    0 0 8px white,
+    0 0 25px var(--purple);
 }
 
-.logo span {
-    color: var(--purple-light);
+.logo .xx{
+    color:var(--purple2);
+    font-size:30px;
 }
 
-/* SEARCH */
+/* البحث */
+.search{
+    flex:1;
+    max-width:600px;
+    margin:auto;
 
-.search {
-    flex: 1;
-    position: relative;
+    position:relative;
 }
 
-.search input {
-    width: 100%;
-    height: 46px;
+.search input{
+    width:100%;
 
-    padding: 0 45px 0 16px;
+    height:45px;
 
-    border-radius: 13px;
+    padding:0 48px 0 15px;
 
-    background: rgba(255,255,255,.055);
+    border-radius:13px;
 
-    border: 1px solid var(--border);
+    border:1px solid var(--border);
 
-    outline: none;
+    outline:none;
 
-    color: white;
+    background:#ffffff08;
+    color:white;
 
-    font-size: 14px;
-
-    transition: .25s;
+    font-size:15px;
 }
 
-.search input:focus {
-    border-color: rgba(139,53,255,.65);
-
-    box-shadow:
-        0 0 0 3px rgba(139,53,255,.08),
-        0 0 20px rgba(139,53,255,.12);
+.search input:focus{
+    border-color:#9b4dff80;
+    box-shadow:0 0 20px #9b4dff15;
 }
 
-.search input::placeholder {
-    color: #74747d;
+.search-icon{
+    position:absolute;
+    right:16px;
+    top:11px;
+
+    color:#aaa;
+
+    font-size:20px;
 }
 
-.search-icon {
-    position: absolute;
+/* الحساب */
+.account{
+    width:44px;
+    height:44px;
 
-    right: 15px;
-    top: 50%;
+    border-radius:50%;
 
-    transform: translateY(-50%);
+    border:1px solid #9b4dff50;
 
-    color: var(--purple-light);
+    background:#9b4dff15;
 
-    font-size: 20px;
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
 }
 
-/* MENU */
+/* المحتوى */
+.container{
+    max-width:1200px;
+    margin:auto;
 
-.menu-btn {
-    width: 45px;
-    height: 45px;
-
-    flex-shrink: 0;
-
-    border-radius: 13px;
-
-    border: 1px solid var(--border);
-
-    background: rgba(255,255,255,.05);
-
-    color: white;
-
-    font-size: 19px;
-
-    cursor: pointer;
+    padding:25px 18px 60px;
 }
 
-/* ================= MAIN ================= */
+/* الترحيب */
+.hero{
+    padding:28px;
 
-.container {
-    width: 100%;
-    max-width: 900px;
+    border-radius:22px;
 
-    margin: auto;
+    background:
+    linear-gradient(135deg,#171020,#0d0b11);
 
-    padding: 28px 18px 50px;
+    border:1px solid var(--border);
+
+    box-shadow:0 0 50px #8b35ff0d;
 }
 
-/* ================= HERO ================= */
-
-.hero {
-    padding: 22px 0 28px;
-}
-
-.badge {
-    display: inline-block;
-
-    padding: 7px 12px;
-
-    border-radius: 30px;
-
-    color: #d4b9ff;
-
-    background: rgba(139,53,255,.1);
-
-    border: 1px solid rgba(139,53,255,.28);
-
-    font-size: 12px;
-
-    margin-bottom: 15px;
-}
-
-.hero h1 {
-    font-size: clamp(34px, 7vw, 55px);
-
-    line-height: 1.08;
-
-    letter-spacing: -1.5px;
-}
-
-.hero h1 span {
-    color: var(--purple-light);
+.hero h1{
+    font-size:30px;
 
     text-shadow:
-        0 0 25px rgba(139,53,255,.55);
+    0 0 12px white,
+    0 0 30px var(--purple);
 }
 
-.hero p {
-    margin-top: 14px;
+.hero p{
+    margin-top:10px;
 
-    color: var(--muted);
+    color:var(--muted);
 
-    line-height: 1.8;
-
-    font-size: 15px;
+    line-height:1.7;
 }
 
-/* ================= CATEGORIES ================= */
+/* التصنيفات */
+.categories{
+    display:flex;
 
-.category-wrapper {
-    position: relative;
+    gap:9px;
 
-    margin: 8px 0 25px;
+    overflow-x:auto;
+
+    padding:20px 0 5px;
+
+    scrollbar-width:none;
 }
 
-.category-btn {
-    width: 100%;
-
-    padding: 14px 16px;
-
-    border-radius: 14px;
-
-    background: rgba(255,255,255,.045);
-
-    border: 1px solid var(--border);
-
-    color: white;
-
-    text-align: right;
-
-    font-size: 15px;
-    font-weight: bold;
-
-    cursor: pointer;
+.categories::-webkit-scrollbar{
+    display:none;
 }
 
-.category-btn span {
-    color: var(--purple-light);
+.category{
+    flex-shrink:0;
+
+    padding:10px 16px;
+
+    border-radius:10px;
+
+    border:1px solid var(--border);
+
+    background:#ffffff07;
+
+    color:#bbb5c5;
+
+    cursor:pointer;
+
+    transition:.2s;
 }
 
-.category-menu {
-    display: none;
+.category:hover,
+.category.active{
+    background:#9b4dff20;
 
-    margin-top: 8px;
+    color:white;
 
-    padding: 8px;
+    border-color:#9b4dff80;
 
-    border-radius: 15px;
-
-    background: rgba(15,15,20,.97);
-
-    border: 1px solid rgba(139,53,255,.2);
-
-    box-shadow:
-        0 15px 40px rgba(0,0,0,.45);
+    box-shadow:0 0 15px #9b4dff20;
 }
 
-.category-menu.show {
-    display: block;
+/* عنوان القسم */
+.section-head{
+    display:flex;
+
+    justify-content:space-between;
+    align-items:center;
+
+    margin:28px 0 15px;
 }
 
-.category-item {
-    width: 100%;
-
-    padding: 12px 14px;
-
-    border: 0;
-
-    border-radius: 10px;
-
-    background: transparent;
-
-    color: #ccc;
-
-    text-align: right;
-
-    cursor: pointer;
-
-    font-size: 14px;
+.section-head h2{
+    font-size:22px;
 }
 
-.category-item:hover,
-.category-item.active {
-    background: rgba(139,53,255,.13);
-
-    color: white;
+.section-head span{
+    color:var(--purple2);
+    font-size:13px;
 }
 
-/* ================= SECTION ================= */
+/* قائمة الفيديوهات */
+.videos{
+    display:grid;
 
-.section-header {
-    display: flex;
+    grid-template-columns:repeat(3,1fr);
 
-    align-items: center;
-
-    justify-content: space-between;
-
-    margin-bottom: 15px;
+    gap:18px;
 }
 
-.section-title {
-    font-size: 21px;
-    font-weight: 800;
+/* بطاقة */
+.video-card{
+    overflow:hidden;
+
+    border-radius:16px;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    cursor:pointer;
+
+    transition:.25s;
 }
 
-.section-title::before {
-    content: "";
+.video-card:hover{
+    transform:translateY(-4px);
 
-    display: inline-block;
+    border-color:#9b4dff60;
 
-    width: 4px;
-    height: 21px;
-
-    margin-left: 9px;
-
-    vertical-align: -3px;
-
-    border-radius: 10px;
-
-    background: var(--purple);
-
-    box-shadow:
-        0 0 12px var(--purple);
+    box-shadow:0 10px 35px #0008;
 }
 
-/* ================= VIDEOS ================= */
+/* الصورة */
+.thumbnail{
+    aspect-ratio:16/9;
 
-.video-list {
-    display: flex;
+    position:relative;
 
-    flex-direction: column;
-
-    gap: 14px;
-}
-
-.video-card {
-    display: flex;
-
-    width: 100%;
-
-    min-height: 145px;
-
-    background: rgba(16,16,21,.88);
-
-    border: 1px solid var(--border);
-
-    border-radius: 16px;
-
-    overflow: hidden;
-
-    cursor: pointer;
-
-    transition: .25s;
-}
-
-.video-card:hover {
-    transform: translateY(-2px);
-
-    border-color:
-        rgba(139,53,255,.5);
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.35),
-        0 0 22px rgba(139,53,255,.1);
-}
-
-/* THUMBNAIL */
-
-.thumbnail {
-    position: relative;
-
-    flex: 0 0 245px;
-
-    aspect-ratio: 16 / 9;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
     background:
-        linear-gradient(
-            135deg,
-            #291047,
-            #09070c
-        );
-
-    overflow: hidden;
+    radial-gradient(circle,#402060,#0c0910);
 }
 
-.thumbnail-number {
-    position: absolute;
+.thumbnail::after{
+    content:"▶";
 
-    inset: 0;
+    width:55px;
+    height:55px;
 
-    display: flex;
+    border-radius:50%;
 
-    justify-content: center;
-    align-items: center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    font-size: 48px;
-    font-weight: 900;
+    background:#9b4dffdd;
 
-    color: rgba(255,255,255,.11);
+    box-shadow:0 0 30px #9b4dffaa;
+
+    font-size:20px;
 }
 
-.play {
-    position: absolute;
+.duration{
+    position:absolute;
 
-    top: 50%;
-    left: 50%;
+    bottom:9px;
+    left:9px;
 
-    transform:
-        translate(-50%,-50%);
+    padding:5px 7px;
 
-    width: 48px;
-    height: 48px;
+    border-radius:6px;
 
-    border-radius: 50%;
+    background:#000b;
 
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    background: rgba(139,53,255,.9);
-
-    box-shadow:
-        0 0 25px rgba(139,53,255,.55);
+    font-size:11px;
 }
 
-.duration {
-    position: absolute;
+.quality{
+    position:absolute;
 
-    left: 8px;
-    bottom: 8px;
+    top:9px;
+    right:9px;
 
-    z-index: 2;
+    padding:5px 7px;
 
-    padding: 4px 6px;
+    border-radius:6px;
 
-    border-radius: 5px;
+    background:#9b4dff;
 
-    background: rgba(0,0,0,.8);
-
-    font-size: 11px;
+    font-size:10px;
+    font-weight:bold;
 }
 
-/* INFO */
-
-.video-info {
-    flex: 1;
-
-    padding: 16px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
+/* معلومات الفيديو */
+.video-info{
+    padding:13px;
 }
 
-.video-title {
-    font-size: 16px;
+.video-title{
+    font-size:15px;
 
-    font-weight: bold;
+    line-height:1.6;
 
-    line-height: 1.55;
-
-    margin-bottom: 10px;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
 }
 
-.video-meta {
-    color: var(--muted);
+.meta{
+    margin-top:9px;
 
-    font-size: 12px;
+    display:flex;
 
-    line-height: 1.8;
+    gap:12px;
+
+    color:#777180;
+
+    font-size:11px;
 }
 
-.video-category {
-    display: inline-block;
+/* الصفحات */
+.pagination{
+    display:flex;
 
-    width: fit-content;
+    justify-content:center;
 
-    margin-top: 8px;
+    gap:8px;
 
-    padding: 4px 8px;
-
-    border-radius: 6px;
-
-    color: #caa9ff;
-
-    background: rgba(139,53,255,.09);
-
-    font-size: 10px;
+    margin-top:35px;
 }
 
-/* ================= PAGINATION ================= */
+.page{
+    width:40px;
+    height:40px;
 
-.pagination {
-    display: flex;
+    border-radius:10px;
 
-    justify-content: center;
-    align-items: center;
+    border:1px solid var(--border);
 
-    gap: 7px;
+    background:#ffffff07;
 
-    margin-top: 28px;
+    color:#aaa;
+
+    cursor:pointer;
 }
 
-.page-btn {
-    min-width: 40px;
-    height: 40px;
+.page.active{
+    background:var(--purple);
 
-    padding: 0 10px;
+    color:white;
 
-    border-radius: 10px;
+    border-color:var(--purple);
 
-    border: 1px solid var(--border);
-
-    background: rgba(255,255,255,.04);
-
-    color: #bbb;
-
-    cursor: pointer;
-
-    transition: .2s;
+    box-shadow:0 0 20px #9b4dff50;
 }
 
-.page-btn:hover {
-    border-color:
-        rgba(139,53,255,.5);
+/* القائمة الجانبية */
+.sidebar{
+    position:fixed;
 
-    color: white;
+    top:0;
+    right:-310px;
+
+    width:290px;
+    height:100vh;
+
+    z-index:300;
+
+    padding:25px;
+
+    background:#100d15;
+
+    border-left:1px solid var(--border);
+
+    transition:.3s;
+
+    box-shadow:-10px 0 50px #0008;
 }
 
-.page-btn.active {
-    background:
-        linear-gradient(
-            135deg,
-            var(--purple),
-            var(--purple-dark)
-        );
-
-    border-color:
-        var(--purple-light);
-
-    color: white;
-
-    box-shadow:
-        0 0 18px rgba(139,53,255,.25);
+.sidebar.open{
+    right:0;
 }
 
-.page-btn:disabled {
-    opacity: .35;
-    cursor: default;
+.close{
+    float:left;
+
+    background:none;
+    border:0;
+
+    color:white;
+
+    font-size:25px;
+
+    cursor:pointer;
 }
 
-/* ================= NO RESULTS ================= */
+.sidebar h2{
+    margin-top:45px;
 
-.no-results {
-    display: none;
-
-    padding: 70px 20px;
-
-    text-align: center;
-
-    color: var(--muted);
+    color:var(--purple2);
 }
 
-.no-results div {
-    font-size: 42px;
+.sidebar a{
+    display:block;
 
-    margin-bottom: 12px;
+    padding:15px 5px;
+
+    color:#bbb;
+
+    text-decoration:none;
+
+    border-bottom:1px solid var(--border);
 }
 
-/* ================= FOOTER ================= */
-
-.footer {
-    text-align: center;
-
-    padding: 30px 20px;
-
-    border-top: 1px solid var(--border);
-
-    color: #666;
-
-    font-size: 12px;
+.sidebar a:hover{
+    color:white;
 }
 
-/* ================= AGE ================= */
+/* طبقة الخلفية */
+.overlay{
+    display:none;
 
-.age-screen {
-    position: fixed;
+    position:fixed;
+    inset:0;
 
-    inset: 0;
+    z-index:250;
 
-    z-index: 1000;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 20px;
-
-    background: rgba(0,0,0,.86);
-
-    backdrop-filter: blur(18px);
+    background:#0009;
 }
 
-.age-card {
-    width: 100%;
-    max-width: 420px;
-
-    padding: 35px 23px 28px;
-
-    text-align: center;
-
-    border-radius: 25px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(23,19,30,.97),
-            rgba(8,8,11,.98)
-        );
-
-    border:
-        1px solid rgba(139,53,255,.35);
-
-    box-shadow:
-        0 0 35px rgba(139,53,255,.2),
-        0 30px 100px rgba(0,0,0,.6);
+.overlay.show{
+    display:block;
 }
 
-.age-icon {
-    width: 76px;
-    height: 76px;
+/* الهاتف */
+@media(max-width:800px){
 
-    margin: auto auto 18px;
-
-    border-radius: 50%;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    font-size: 34px;
-
-    background: rgba(139,53,255,.1);
-
-    border:
-        1px solid rgba(139,53,255,.55);
-
-    box-shadow:
-        0 0 30px rgba(139,53,255,.25);
-}
-
-.age-card h2 {
-    font-size: 26px;
-
-    margin-bottom: 10px;
-}
-
-.age-card p {
-    color: #a7a7af;
-
-    line-height: 1.8;
-
-    margin-bottom: 20px;
-}
-
-.turnstile-box {
-    min-height: 65px;
-
-    display: flex;
-
-    justify-content: center;
-
-    margin-bottom: 18px;
-}
-
-.age-buttons {
-    display: flex;
-
-    gap: 10px;
-}
-
-.age-buttons button {
-    flex: 1;
-
-    padding: 14px;
-
-    border-radius: 12px;
-
-    color: white;
-
-    font-weight: bold;
-
-    cursor: pointer;
-}
-
-.enter-btn {
-    background:
-        linear-gradient(
-            135deg,
-            #8b35ff,
-            #5b18b8
-        );
-
-    border: 1px solid #a66aff;
-}
-
-.enter-btn:disabled {
-    opacity: .4;
-    cursor: not-allowed;
-}
-
-.exit-btn {
-    background: rgba(255,255,255,.04);
-
-    border: 1px solid rgba(255,255,255,.12);
-}
-
-/* ================= MOBILE ================= */
-
-@media (max-width: 600px) {
-
-    .header-inner {
-        flex-wrap: wrap;
+    .videos{
+        grid-template-columns:1fr;
     }
 
-    .logo {
-        font-size: 18px;
+    .hero{
+        padding:22px;
     }
 
-    .search {
-        order: 3;
-
-        flex-basis: 100%;
+    .hero h1{
+        font-size:25px;
     }
 
-    .container {
-        padding-top: 20px;
+    .nav{
+        gap:9px;
     }
 
-    .hero {
-        padding-top: 10px;
+    .logo{
+        font-size:16px;
     }
 
-    .hero h1 {
-        font-size: 38px;
+    .logo .xx{
+        font-size:24px;
     }
 
-    .video-card {
-        display: block;
+    .search{
+        order:5;
+        flex-basis:100%;
     }
 
-    .thumbnail {
-        width: 100%;
-
-        height: auto;
-
-        aspect-ratio: 16 / 9;
+    .nav{
+        flex-wrap:wrap;
+        padding-bottom:15px;
     }
+}
 
-    .video-info {
-        padding: 13px;
-    }
+@media(min-width:801px) and (max-width:1000px){
 
-    .video-title {
-        font-size: 15px;
-    }
-
-    .age-buttons {
-        flex-direction: column;
+    .videos{
+        grid-template-columns:repeat(2,1fr);
     }
 }
 </style>
@@ -832,937 +551,339 @@ body {
 
 <body>
 
-<div class="background">
-    <div class="glow one"></div>
-    <div class="glow two"></div>
+<!-- الهيدر -->
+<header>
+
+<div class="nav">
+
+<button class="menu" onclick="openMenu()">☰</button>
+
+<div class="logo">
+<span class="xx">Xx</span> ARABZONE
 </div>
 
+<div class="search">
 
-<!-- HEADER -->
+<span class="search-icon">⌕</span>
 
-<header class="header">
+<input
+type="search"
+placeholder="ابحث عن فيديو، تصنيف أو اسم..."
+oninput="searchVideos(this.value)"
+>
 
-    <div class="header-inner">
+</div>
 
-        <a href="#" class="logo">
-            عرب زون — <span>ARABZONE</span>
-        </a>
+<button class="account" onclick="login()">
+♙
+</button>
 
-        <div class="search">
-
-            <span class="search-icon">⌕</span>
-
-            <input
-                id="searchInput"
-                type="search"
-                placeholder="ابحث عن فيديو..."
-                autocomplete="off"
-            >
-
-        </div>
-
-        <button
-            class="menu-btn"
-            onclick="toggleCategories()">
-            ☰
-        </button>
-
-    </div>
+</div>
 
 </header>
 
 
-<!-- MAIN -->
-
+<!-- المحتوى -->
 <main class="container">
 
+<section class="hero">
 
-    <!-- HERO -->
+<h1>
+مرحبًا بك في Xx ARABZONE
+</h1>
 
-    <section class="hero">
+<p>
+اكتشف أحدث الفيديوهات والمحتوى المتنوع في مكان واحد.
+</p>
 
-        <div class="badge">
-            ✦ مرحبًا بك في عرب زون
-        </div>
+</section>
 
-        <h1>
-            اكتشف الفيديوهات
-            <br>
-            في <span>ARABZONE</span>
-        </h1>
 
-        <p>
-            ابحث عن المحتوى الذي تريده واستكشف أحدث الفيديوهات.
-        </p>
+<!-- التصنيفات -->
+<div class="categories">
 
-    </section>
+<button class="category active">
+الكل
+</button>
 
+<button class="category">
+الأحدث
+</button>
 
-    <!-- CATEGORIES -->
+<button class="category">
+الأكثر مشاهدة
+</button>
 
-    <div class="category-wrapper">
+<button class="category">
+HD
+</button>
 
-        <button
-            class="category-btn"
-            onclick="toggleCategories()">
+<button class="category">
+موسيقى
+</button>
 
-            ☰ &nbsp; التصنيفات
-            <span id="selectedCategory">
-                الكل
-            </span>
+<button class="category">
+ترفيه
+</button>
 
-        </button>
-
-
-        <div
-            class="category-menu"
-            id="categoryMenu">
-
-            <button
-                class="category-item active"
-                onclick="selectCategory('الكل', this)">
-                الكل
-            </button>
-
-            <button
-                class="category-item"
-                onclick="selectCategory('الأحدث', this)">
-                الأحدث
-            </button>
-
-            <button
-                class="category-item"
-                onclick="selectCategory('الأكثر مشاهدة', this)">
-                الأكثر مشاهدة
-            </button>
-
-            <button
-                class="category-item"
-                onclick="selectCategory('التصنيف الأول', this)">
-                التصنيف الأول
-            </button>
-
-            <button
-                class="category-item"
-                onclick="selectCategory('التصنيف الثاني', this)">
-                التصنيف الثاني
-            </button>
-
-            <button
-                class="category-item"
-                onclick="selectCategory('التصنيف الثالث', this)">
-                التصنيف الثالث
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- VIDEO SECTION -->
-
-    <section>
-
-        <div class="section-header">
-
-            <h2 class="section-title">
-                الفيديوهات
-            </h2>
-
-        </div>
-
-
-        <div
-            class="video-list"
-            id="videoList">
-
-
-            <!-- VIDEO 1 -->
-
-            <article
-                class="video-card"
-                data-title="الفيديو التجريبي الأول"
-                data-category="الأحدث">
-
-                <div class="thumbnail">
-
-                    <div class="thumbnail-number">
-                        01
-                    </div>
-
-                    <div class="play">
-                        ▶
-                    </div>
-
-                    <div class="duration">
-                        12:45
-                    </div>
-
-                </div>
-
-                <div class="video-info">
-
-                    <div class="video-title">
-                        الفيديو التجريبي الأول
-                    </div>
-
-                    <div class="video-meta">
-                        👁 1.2K مشاهدة
-                        <br>
-                        منذ يوم
-                    </div>
-
-                    <span class="video-category">
-                        الأحدث
-                    </span>
-
-                </div>
-
-            </article>
-
-
-            <!-- VIDEO 2 -->
-
-            <article
-                class="video-card"
-                data-title="الفيديو التجريبي الثاني"
-                data-category="الأكثر مشاهدة">
-
-                <div class="thumbnail">
-
-                    <div class="thumbnail-number">
-                        02
-                    </div>
-
-                    <div class="play">
-                        ▶
-                    </div>
-
-                    <div class="duration">
-                        08:21
-                    </div>
-
-                </div>
-
-                <div class="video-info">
-
-                    <div class="video-title">
-                        الفيديو التجريبي الثاني
-                    </div>
-
-                    <div class="video-meta">
-                        👁 4.8K مشاهدة
-                        <br>
-                        منذ يومين
-                    </div>
-
-                    <span class="video-category">
-                        الأكثر مشاهدة
-                    </span>
-
-                </div>
-
-            </article>
-
-
-            <!-- VIDEO 3 -->
-
-            <article
-                class="video-card"
-                data-title="الفيديو التجريبي الثالث"
-                data-category="التصنيف الأول">
-
-                <div class="thumbnail">
-
-                    <div class="thumbnail-number">
-                        03
-                    </div>
-
-                    <div class="play">
-                        ▶
-                    </div>
-
-                    <div class="duration">
-                        17:32
-                    </div>
-
-                </div>
-
-                <div class="video-info">
-
-                    <div class="video-title">
-                        الفيديو التجريبي الثالث
-                    </div>
-
-                    <div class="video-meta">
-                        👁 6.1K مشاهدة
-                        <br>
-                        منذ 3 أيام
-                    </div>
-
-                    <span class="video-category">
-                        التصنيف الأول
-                    </span>
-
-                </div>
-
-            </article>
-
-
-            <!-- VIDEO 4 -->
-
-            <article
-                class="video-card"
-                data-title="الفيديو التجريبي الرابع"
-                data-category="التصنيف الثاني">
-
-                <div class="thumbnail">
-
-                    <div class="thumbnail-number">
-                        04
-                    </div>
-
-                    <div class="play">
-                        ▶
-                    </div>
-
-                    <div class="duration">
-                        21:07
-                    </div>
-
-                </div>
-
-                <div class="video-info">
-
-                    <div class="video-title">
-                        الفيديو التجريبي الرابع
-                    </div>
-
-                    <div class="video-meta">
-                        👁 8.4K مشاهدة
-                        <br>
-                        منذ 4 أيام
-                    </div>
-
-                    <span class="video-category">
-                        التصنيف الثاني
-                    </span>
-
-                </div>
-
-            </article>
-
-
-            <!-- VIDEO 5 -->
-
-            <article
-                class="video-card"
-                data-title="الفيديو التجريبي الخامس"
-                data-category="التصنيف الثالث">
-
-                <div class="thumbnail">
-
-                    <div class="thumbnail-number">
-                        05
-                    </div>
-
-                    <div class="play">
-                        ▶
-                    </div>
-
-                    <div class="duration">
-                        10:18
-                    </div>
-
-                </div>
-
-                <div class="video-info">
-
-                    <div class="video-title">
-                        الفيديو التجريبي الخامس
-                    </div>
-
-                    <div class="video-meta">
-                        👁 2.6K مشاهدة
-                        <br>
-                        منذ 5 أيام
-                    </div>
-
-                    <span class="video-category">
-                        التصنيف الثالث
-                    </span>
-
-                </div>
-
-            </article>
-
-
-            <!-- VIDEO 6 -->
-
-            <article
-                class="video-card"
-                data-title="الفيديو التجريبي السادس"
-                data-category="الأحدث">
-
-                <div class="thumbnail">
-
-                    <div class="thumbnail-number">
-                        06
-                    </div>
-
-                    <div class="play">
-                        ▶
-                    </div>
-
-                    <div class="duration">
-                        14:20
-                    </div>
-
-                </div>
-
-                <div class="video-info">
-
-                    <div class="video-title">
-                        الفيديو التجريبي السادس
-                    </div>
-
-                    <div class="video-meta">
-                        👁 3.3K مشاهدة
-                        <br>
-                        منذ 6 أيام
-                    </div>
-
-                    <span class="video-category">
-                        الأحدث
-                    </span>
-
-                </div>
-
-            </article>
-
-
-            <!-- VIDEO 7 -->
-
-            <article
-                class="video-card"
-                data-title="الفيديو التجريبي السابع"
-                data-category="الأكثر مشاهدة">
-
-                <div class="thumbnail">
-
-                    <div class="thumbnail-number">
-                        07
-                    </div>
-
-                    <div class="play">
-                        ▶
-                    </div>
-
-                    <div class="duration">
-                        19:44
-                    </div>
-
-                </div>
-
-                <div class="video-info">
-
-                    <div class="video-title">
-                        الفيديو التجريبي السابع
-                    </div>
-
-                    <div class="video-meta">
-                        👁 9.7K مشاهدة
-                        <br>
-                        منذ أسبوع
-                    </div>
-
-                    <span class="video-category">
-                        الأكثر مشاهدة
-                    </span>
-
-                </div>
-
-            </article>
-
-
-            <!-- VIDEO 8 -->
-
-            <article
-                class="video-card"
-                data-title="الفيديو التجريبي الثامن"
-                data-category="التصنيف الأول">
-
-                <div class="thumbnail">
-
-                    <div class="thumbnail-number">
-                        08
-                    </div>
-
-                    <div class="play">
-                        ▶
-                    </div>
-
-                    <div class="duration">
-                        07:55
-                    </div>
-
-                </div>
-
-                <div class="video-info">
-
-                    <div class="video-title">
-                        الفيديو التجريبي الثامن
-                    </div>
-
-                    <div class="video-meta">
-                        👁 4.2K مشاهدة
-                        <br>
-                        منذ أسبوع
-                    </div>
-
-                    <span class="video-category">
-                        التصنيف الأول
-                    </span>
-
-                </div>
-
-            </article>
-
-
-            <!-- VIDEO 9 -->
-
-            <article
-                class="video-card"
-                data-title="الفيديو التجريبي التاسع"
-                data-category="التصنيف الثاني">
-
-                <div class="thumbnail">
-
-                    <div class="thumbnail-number">
-                        09
-                    </div>
-
-                    <div class="play">
-                        ▶
-                    </div>
-
-                    <div class="duration">
-                        23:10
-                    </div>
-
-                </div>
-
-                <div class="video-info">
-
-                    <div class="video-title">
-                        الفيديو التجريبي التاسع
-                    </div>
-
-                    <div class="video-meta">
-                        👁 7.9K مشاهدة
-                        <br>
-                        منذ أسبوعين
-                    </div>
-
-                    <span class="video-category">
-                        التصنيف الثاني
-                    </span>
-
-                </div>
-
-            </article>
-
-
-            <!-- VIDEO 10 -->
-
-            <article
-                class="video-card"
-                data-title="الفيديو التجريبي العاشر"
-                data-category="التصنيف الثالث">
-
-                <div class="thumbnail">
-
-                    <div class="thumbnail-number">
-                        10
-                    </div>
-
-                    <div class="play">
-                        ▶
-                    </div>
-
-                    <div class="duration">
-                        16:38
-                    </div>
-
-                </div>
-
-                <div class="video-info">
-
-                    <div class="video-title">
-                        الفيديو التجريبي العاشر
-                    </div>
-
-                    <div class="video-meta">
-                        👁 5.5K مشاهدة
-                        <br>
-                        منذ أسبوعين
-                    </div>
-
-                    <span class="video-category">
-                        التصنيف الثالث
-                    </span>
-
-                </div>
-
-            </article>
-
-        </div>
-
-
-        <!-- NO RESULTS -->
-
-        <div
-            class="no-results"
-            id="noResults">
-
-            <div>🔎</div>
-
-            <h3>
-                لم نجد نتائج
-            </h3>
-
-            <p>
-                جرّب كلمة بحث مختلفة.
-            </p>
-
-        </div>
-
-
-        <!-- PAGINATION -->
-
-        <div
-            class="pagination"
-            id="pagination">
-
-            <button
-                class="page-btn"
-                id="prevBtn"
-                onclick="changePage(-1)">
-                السابق
-            </button>
-
-            <button
-                class="page-btn active"
-                onclick="goToPage(1)">
-                1
-            </button>
-
-            <button
-                class="page-btn"
-                onclick="goToPage(2)">
-                2
-            </button>
-
-            <button
-                class="page-btn"
-                onclick="goToPage(3)">
-                3
-            </button>
-
-            <button
-                class="page-btn"
-                id="nextBtn"
-                onclick="changePage(1)">
-                التالي
-            </button>
-
-        </div>
-
-    </section>
-
-</main>
-
-
-<footer class="footer">
-    © 2026 عرب زون — ARABZONE
-</footer>
-
-
-<!-- AGE SCREEN -->
-
-<div
-    class="age-screen"
-    id="ageScreen">
-
-    <div class="age-card">
-
-        <div class="age-icon">
-            🔞
-        </div>
-
-        <h2>
-            التحقق من العمر
-        </h2>
-
-        <p>
-            هذا الموقع مخصص للبالغين.
-            <br>
-            يجب أن يكون عمرك 18 سنة أو أكثر للمتابعة.
-        </p>
-
-        <div class="turnstile-box">
-
-            <div
-                class="cf-turnstile"
-                data-sitekey="0x4AAAAAAEbw-sexQcW-COiM"
-                data-theme="dark"
-                data-callback="turnstileSuccess">
-            </div>
-
-        </div>
-
-        <div class="age-buttons">
-
-            <button
-                class="enter-btn"
-                id="enterButton"
-                onclick="enterSite()"
-                disabled>
-                ✓ نعم، عمري 18+
-            </button>
-
-            <button
-                class="exit-btn"
-                onclick="blockSite()">
-                ✕ خروج
-            </button>
-
-        </div>
-
-    </div>
+<button class="category">
+رياضة
+</button>
 
 </div>
 
 
+<div class="section-head">
+
+<h2>🔥 أحدث الفيديوهات</h2>
+
+<span>عرض الكل</span>
+
+</div>
+
+
+<!-- الفيديوهات -->
+<div class="videos" id="videos">
+
+<!-- فيديو 1 -->
+<div class="video-card">
+
+<div class="thumbnail">
+
+<span class="quality">HD</span>
+<span class="duration">12:34</span>
+
+</div>
+
+<div class="video-info">
+
+<div class="video-title">
+عنوان الفيديو التجريبي الأول
+</div>
+
+<div class="meta">
+<span>👁 125K</span>
+<span>منذ ساعتين</span>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- فيديو 2 -->
+<div class="video-card">
+
+<div class="thumbnail">
+
+<span class="quality">4K</span>
+<span class="duration">08:21</span>
+
+</div>
+
+<div class="video-info">
+
+<div class="video-title">
+عنوان الفيديو التجريبي الثاني
+</div>
+
+<div class="meta">
+<span>👁 98K</span>
+<span>منذ 4 ساعات</span>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- فيديو 3 -->
+<div class="video-card">
+
+<div class="thumbnail">
+
+<span class="quality">HD</span>
+<span class="duration">21:05</span>
+
+</div>
+
+<div class="video-info">
+
+<div class="video-title">
+عنوان الفيديو التجريبي الثالث
+</div>
+
+<div class="meta">
+<span>👁 76K</span>
+<span>منذ 6 ساعات</span>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- فيديو 4 -->
+<div class="video-card">
+
+<div class="thumbnail">
+
+<span class="quality">HD</span>
+<span class="duration">15:42</span>
+
+</div>
+
+<div class="video-info">
+
+<div class="video-title">
+عنوان فيديو جديد ومميز
+</div>
+
+<div class="meta">
+<span>👁 65K</span>
+<span>أمس</span>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- فيديو 5 -->
+<div class="video-card">
+
+<div class="thumbnail">
+
+<span class="quality">4K</span>
+<span class="duration">10:18</span>
+
+</div>
+
+<div class="video-info">
+
+<div class="video-title">
+أفضل فيديوهات هذا الأسبوع
+</div>
+
+<div class="meta">
+<span>👁 54K</span>
+<span>أمس</span>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- فيديو 6 -->
+<div class="video-card">
+
+<div class="thumbnail">
+
+<span class="quality">HD</span>
+<span class="duration">18:30</span>
+
+</div>
+
+<div class="video-info">
+
+<div class="video-title">
+فيديو جديد تمت إضافته اليوم
+</div>
+
+<div class="meta">
+<span>👁 41K</span>
+<span>أمس</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- الصفحات -->
+<div class="pagination">
+
+<button class="page active">1</button>
+<button class="page">2</button>
+<button class="page">3</button>
+<button class="page">4</button>
+<button class="page">5</button>
+
+</div>
+
+</main>
+
+
+<!-- القائمة الجانبية -->
+
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+<aside class="sidebar" id="sidebar">
+
+<button class="close" onclick="closeMenu()">×</button>
+
+<h2>Xx ARABZONE</h2>
+
+<a href="#">🏠 الرئيسية</a>
+<a href="#">🔥 الأكثر مشاهدة</a>
+<a href="#">🆕 الأحدث</a>
+<a href="#">⭐ المفضلة</a>
+<a href="#">👤 حسابي</a>
+<a href="#">📜 سجل المشاهدة</a>
+<a href="#">⚙️ الإعدادات</a>
+
+</aside>
+
+
 <script>
 
-/* =========================
-   AGE VERIFICATION
-========================= */
+function openMenu(){
 
-let turnstileVerified = false;
+document.getElementById("sidebar")
+.classList.add("open");
 
-function turnstileSuccess(token) {
-
-    if (token) {
-
-        turnstileVerified = true;
-
-        document.getElementById("enterButton")
-            .disabled = false;
-    }
-}
-
-function enterSite() {
-
-    if (!turnstileVerified) {
-
-        alert("يرجى إكمال التحقق أولًا.");
-
-        return;
-    }
-
-    const screen =
-        document.getElementById("ageScreen");
-
-    screen.style.transition =
-        "opacity .5s ease";
-
-    screen.style.opacity = "0";
-
-    setTimeout(() => {
-
-        screen.style.display = "none";
-
-        document.body.style.overflow =
-            "auto";
-
-    }, 500);
-}
-
-function blockSite() {
-
-    document.getElementById("ageScreen").innerHTML = `
-        <div class="age-card">
-
-            <div class="age-icon">
-                🔒
-            </div>
-
-            <h2>
-                الدخول غير متاح
-            </h2>
-
-            <p>
-                يجب أن يكون عمرك 18 سنة أو أكثر
-                للدخول إلى عرب زون.
-            </p>
-
-        </div>
-    `;
-}
-
-
-/* =========================
-   CATEGORIES
-========================= */
-
-let selectedCategory = "الكل";
-
-function toggleCategories() {
-
-    const menu =
-        document.getElementById("categoryMenu");
-
-    menu.classList.toggle("show");
-}
-
-function selectCategory(category, element) {
-
-    selectedCategory = category;
-
-    document.getElementById("selectedCategory")
-        .textContent = category;
-
-    document
-        .querySelectorAll(".category-item")
-        .forEach(item => {
-            item.classList.remove("active");
-        });
-
-    element.classList.add("active");
-
-    document
-        .getElementById("categoryMenu")
-        .classList.remove("show");
-
-    filterVideos();
-}
-
-
-/* =========================
-   SEARCH
-========================= */
-
-const searchInput =
-    document.getElementById("searchInput");
-
-searchInput.addEventListener(
-    "input",
-    filterVideos
-);
-
-function filterVideos() {
-
-    const query =
-        searchInput.value
-            .trim()
-            .toLowerCase();
-
-    const videos =
-        document.querySelectorAll(
-            "#videoList .video-card"
-        );
-
-    let found = 0;
-
-    videos.forEach(video => {
-
-        const title =
-            video.dataset.title.toLowerCase();
-
-        const category =
-            video.dataset.category;
-
-        const matchesSearch =
-            title.includes(query);
-
-        const matchesCategory =
-            selectedCategory === "الكل" ||
-            category === selectedCategory;
-
-        if (
-            matchesSearch &&
-            matchesCategory
-        ) {
-
-            video.style.display = "flex";
-
-            found++;
-
-        } else {
-
-            video.style.display = "none";
-
-        }
-
-    });
-
-    document.getElementById("noResults")
-        .style.display =
-            found === 0 ? "block" : "none";
+document.getElementById("overlay")
+.classList.add("show");
 
 }
 
+function closeMenu(){
 
-/* =========================
-   PAGINATION
-========================= */
+document.getElementById("sidebar")
+.classList.remove("open");
 
-let currentPage = 1;
-
-function goToPage(page) {
-
-    currentPage = page;
-
-    document
-        .querySelectorAll(".page-btn")
-        .forEach(btn => {
-            btn.classList.remove("active");
-        });
-
-    const pageButtons =
-        document.querySelectorAll(
-            ".pagination .page-btn"
-        );
-
-    if (pageButtons[page]) {
-        pageButtons[page]
-            .classList.add("active");
-    }
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+document.getElementById("overlay")
+.classList.remove("show");
 
 }
 
+function login(){
 
-/* NEXT / PREVIOUS */
+alert("صفحة تسجيل الحساب سنبنيها في المرحلة القادمة.");
 
-function changePage(direction) {
+}
 
-    let newPage =
-        currentPage + direction;
+function searchVideos(value){
 
-    if (newPage < 1)
-        newPage = 1;
+value=value.toLowerCase();
 
-    if (newPage > 3)
-        newPage = 3;
+const cards=document.querySelectorAll(".video-card");
 
-    goToPage(newPage);
+cards.forEach(card=>{
+
+const title=card
+.querySelector(".video-title")
+.textContent
+.toLowerCase();
+
+card.style.display=
+title.includes(value) ? "" : "none";
+
+});
+
 }
 
 </script>
